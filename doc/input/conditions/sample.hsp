@@ -1,0 +1,24 @@
+# template example(context)
+	<a onclick="{increment(context)}">Increment</a> | <a onclick="{decrement(context)}">Decrement</a>
+
+	<br/>
+
+	Number is:
+	{if context.number < 0}
+		negative
+	{else if context.number > 0}
+		positive
+	{else}
+		null
+	{/if}
+	&nbsp;({context.number === 0 ? 'null' : context.number}).
+# /template
+
+context = {
+	number: 0
+};
+
+example(context).render("output");
+
+function increment(context) {context.number++}
+function decrement(context) {context.number--}

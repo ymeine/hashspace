@@ -1,0 +1,19 @@
+# template example(array)
+	<ul>
+	{foreach index, value in array}
+		<li onclick="{process(value)}">{index}: {value}</li>
+	{/foreach}
+	</ul>
+	You clicked on: {if array.clicked != null}{array.clicked}{else}<em>none</em>{/if}.
+# /template
+
+var array = [
+	'Item 1',
+	'Item 2'
+];
+
+example(array).render("output");
+
+function process(value) {
+	array.clicked = value;
+}

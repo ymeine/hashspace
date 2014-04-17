@@ -1,0 +1,13 @@
+<p>
+	As for other statements, the parameters of the statement are watched, so that the logging will be refreshed anytime one of those changes.
+</p>
+<p>
+	This relies on the logging utility of hashspace. The statement will forward to the main <code>log</code> method all the arguments passed to the statement, and will build itself the <code>metadata</code> object with the following values:
+	<ul>
+		<li><code>type</code>: <code>"debug"</code></li>
+		<li><code>file</code>: the file name in which the statement is used</li>
+		<li><code>dir</code>: the path of the directory in which the file is</li>
+		<li><code>line</code>: the line number in which the statement appears in the file</li>
+		<li><code>column</code>: the column number in which the statement appears on the line</li>
+	</ul>
+</p>

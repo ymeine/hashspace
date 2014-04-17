@@ -1,0 +1,7 @@
+# template example(array)
+	<ul>
+	{foreach index, value in array}
+		<li onclick="{process(value)}">{index}: {value}</li>
+	{/foreach}
+	</ul>
+# /template

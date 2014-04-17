@@ -1,0 +1,9 @@
+var log = require("hsp/rt/log");
+var myLoggingutility = require("./logging");
+
+log.addLogger(function(message, metadata) {
+	myLoggingutility.add({message: message, level: metadata.type});
+	return false;
+});
+
+log("Here is my first log.")

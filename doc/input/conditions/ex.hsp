@@ -1,0 +1,11 @@
+# template example(context)
+	Number is:
+	{if context.number < 0}
+		negative
+	{else if context.number > 0}
+		positive
+	{else}
+		null
+	{/if}
+	&nbsp;({context.number === 0 ? 'null' : context.number}).
+# /template

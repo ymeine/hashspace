@@ -1,0 +1,19 @@
+<p>
+	Specific available methods are described below.
+</p>
+<p>
+	You can use one of the logging methods to push data to be logged. Then, all registered loggers will be called. Finally, the logger of the Hashspace engine itself will handle this if none of the user loggers returned <code>false</code>.
+</p>
+<p>
+	A log instance is more than a simple message, it is in fact a full object with the following properties:
+	<ul>
+		<li><code>id</code>: <code>{String|Number}</code> </li>
+		<li><code>message</code>: <code>{String}</code> </li>
+		<li><code>file</code>: <code>{String}</code> </li>
+		<li><code>dir</code>: <code>{String}</code> </li>
+		<li><code>code</code>: <code>{String}</code> </li>
+		<li><code>line</code>: <code>{Number}</code> </li>
+		<li><code>column</code>: <code>{Number}</code> </li>
+	</ul>
+	This object is built from the logging methods described below. It is also
+</p>

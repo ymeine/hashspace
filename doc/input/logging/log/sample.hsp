@@ -1,0 +1,35 @@
+var log=require("hsp/rt/log");
+
+# template test(logs)
+	<ul>
+	{foreach data in logs}
+		<li>
+			<ul>
+				<li>type: {data.type}</li>
+				<li>id: {data.id}</li>
+				<li>message: {data.message}</li>
+				<li>code: {data.code}</li>
+				<li>dir: {data.dir}</li>
+				<li>file: {data.file}</li>
+				<li>line: {data.line}</li>
+				<li>column: {data.column}</li>
+			</ul>
+		</li>
+	{/foreach}
+	</ul>
+# /template
+
+var logs=[];
+
+log.addLogger(function(data) {
+	console.log(data);
+	logs.push(data);
+	return false;
+});
+
+test(logs).render("output");
+
+log("The message", {
+	type: "debug",
+	message: "default"
+});

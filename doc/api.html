@@ -1,0 +1,382 @@
+<hr />
+	<section>
+		<h3 id="template">
+			Template - Statement
+		</h3>
+<p>
+	<code># template</code> ... <code># /template</code> defines a template.
+</p>
+<p>
+	For reminder the template definition follows the principles of function definition: a name and a list of formal parameters.
+		
+		The whole template is converted to a JavaScript function, which returns a template instance with the given parameters when it gets called.
+</p>
+	<pre class="hashspace"><code>
+# template hello(name)
+	Hello {name}!
+# /template
+
+var instance = hello("World");
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="template_render_domelementid_">
+			template.render(DOMElementId) - Core
+		</h3>
+<p>
+	Renders a template instance into the DOM element corresponding to the given id.
+</p>
+<p>
+	
+</p>
+	<pre class="hashspace"><code>
+# template hello(name)
+	Hello {name}!
+# /template
+
+hello("World").render("output");
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="create-sub-template-instances">
+			Create sub-template instances - Statement
+		</h3>
+<p>
+	<code>&lt;#subTemplateName param1="param1Value param2="param2Value"/&gt;</code>
+</p>
+<p>
+	This works as if it were a standard HTML element: the output will be generated at the place you put the statement and parameters are passed as attributes. <strong>Note that</strong> in this case the parameters are passed by name, not by their position.
+</p>
+	<pre class="hashspace"><code>
+# template example()
+	&lt;#property value="..." key="..." /&gt;
+# /template
+
+# template property(key, value)
+# /template
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="event-handlers">
+			Event handlers - Expression
+		</h3>
+<p>
+	You can use function expressions inside DOM elements' event handlers definitions.
+</p>
+<p>
+	This means that instead of giving a piece of JavaScript code to be executed in the global scope, you can use the standard call mechanisms, in the scope of the current module (file).
+</p>
+	<pre class="hashspace"><code>
+
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="conditions">
+			conditions - Statement
+		</h3>
+<p>
+	You can conditionally execute parts of the template using either <code>{if}/{else if}/{else}</code> statements, or using a ternary expression.
+</p>
+<p>
+	
+</p>
+	<pre class="hashspace"><code>
+# template example(context)
+	Number is:
+	{if context.number &lt; 0}
+		negative
+	{else if context.number &gt; 0}
+		positive
+	{else}
+		null
+	{/if}
+	&nbsp;({context.number === 0 ? 'null' : context.number}).
+# /template
+
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="loop-over-an-array">
+			Loop over an array - Statement
+		</h3>
+<p>
+	Use the <code>{foreach value in array}</code> or <code>{foreach index, value in array}</code> expression to loop over an array.
+</p>
+<p>
+	Note that each iteration creates a new scope with the current value and possible index.
+</p>
+	<pre class="hashspace"><code>
+# template example(array)
+	&lt;ul&gt;
+	{foreach index, value in array}
+		&lt;li onclick="{process(value)}"&gt;{index}: {value}&lt;/li&gt;
+	{/foreach}
+	&lt;/ul&gt;
+# /template
+
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="array-update">
+			Array update - Core
+		</h3>
+<p>
+	Standard Array methods trigger the data-binding mechanisms.
+</p>
+<p>
+	<p>
+		The following standard methods of Array's prototype have been overridden for this purpose: <code>splice</code>, <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>reverse</code>, <code>sort</code>.
+		</p>
+		<p>
+		In addition to those methods, one more has been added: <code>splice2</code>, see corresponding section for more information.
+		</p>
+		<p>
+		This means that listeners added on the array will be notified about the changes.
+		</p>
+</p>
+	<pre class="hashspace"><code>
+var actions = [
+	{method: push, label: 'Push'},
+	{method: pop, label: 'Pop'},
+	{method: unshift, label: 'Unshift'},
+	{method: shift, label: 'Shift'},
+	{method: reverse, label: 'Reverse'},
+	{method: sort, label: 'Sort'},
+	{method: splice, label: 'Splice'},
+	{method: splice2, label: 'Splice (2)'}
+]
+
+var array = [];
+
+
+
+# template example(array, actions)
+	{foreach action in actions}
+		— &lt;a onclick="{action.method()}"&gt;{action.label}&lt;/a&gt;&nbsp;
+	{/foreach}
+	—
+
+	&lt;br/&gt;
+
+	&lt;ul&gt;
+	{foreach value in array}
+		&lt;li&gt;{value}&lt;/li&gt;
+	{/foreach}
+	&lt;/ul&gt;
+#/template
+
+example(array, actions).render("output");
+
+
+function push() {array.push('pushed');}
+function pop() {array.pop();}
+
+function unshift() {array.unshift('unshift');}
+function shift() {array.shift();}
+
+function reverse() {array.reverse();}
+function sort() {
+	array.sort(function(a, b) {
+		if (a &lt; b) return -1;
+		if (a &gt; b) return 1;
+		return 0;
+	});
+}
+
+function splice() {array.splice(1, 0, 'spliced-1', 'spliced-2');}
+function splice2() {array.splice2(1, 0, ['spliced2-1', 'spliced2-2'])}
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="array_prototype_splice__index_-howmany_-elements_">
+			Array.prototype.splice2(index, howMany, elements) - Core
+		</h3>
+<p>
+	Equivalent of standard <code>splice</code> but using a list of items instead of relying on the variable length of the arguments list.
+</p>
+<p>
+	This method triggers the data-binding mechanisms.
+</p>
+	<pre class="hashspace"><code>
+var array = ['a', 'b', 'e', 'f'];
+array.splice2(2, 0, ['c', 'd']); // =&gt; ['a', 'b', 'c', 'd', 'e', 'f']
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="log">
+			Log - Core
+		</h3>
+<p>
+	A logging utility.
+</p>
+<p>
+	<p>
+			Specific available methods are described below.
+		</p>
+		<p>
+			You can use one of the logging methods to push data to be logged. Then, all registered loggers will be called. Finally, the logger of the Hashspace engine itself will handle this if none of the user loggers returned <code>false</code>.
+		</p>
+		<p>
+			A log instance is more than a simple message, it is in fact a full object with the following properties:
+			<ul>
+				<li><code>id</code>: <code>{String|Number}</code> </li>
+				<li><code>message</code>: <code>{String}</code> </li>
+				<li><code>file</code>: <code>{String}</code> </li>
+				<li><code>dir</code>: <code>{String}</code> </li>
+				<li><code>code</code>: <code>{String}</code> </li>
+				<li><code>line</code>: <code>{Number}</code> </li>
+				<li><code>column</code>: <code>{Number}</code> </li>
+			</ul>
+			This object is built from the logging methods described below. It is also
+		</p>
+</p>
+	<pre class="hashspace"><code>
+var log = require("hsp/rt/log");
+var myLoggingutility = require("./logging");
+
+log.addLogger(function(message, metadata) {
+	myLoggingutility.add({message: message, level: metadata.type});
+	return false;
+});
+
+log("Here is my first log.")
+
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="log_addlogger_handler_">
+			log.addLogger(handler) - Core
+		</h3>
+<p>
+	Adds a logger to the logging utility.
+</p>
+<p>
+	The <code>handler</code> is a function receiving a log data object with the following properties:
+		<ul>
+			<li><code>id</code>: <code>{String|Number}</code> </li>
+			<li><code>message</code>: <code>{String}</code> </li>
+			<li><code>file</code>: <code>{String}</code> </li>
+			<li><code>dir</code>: <code>{String}</code> </li>
+			<li><code>code</code>: <code>{String}</code> </li>
+			<li><code>line</code>: <code>{Number}</code> </li>
+			<li><code>column</code>: <code>{Number}</code> </li>
+		</ul>
+		
+</p>
+	<pre class="hashspace"><code>
+
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="_log_">
+			{log} - Statement
+		</h3>
+<p>
+	<code>{log param1, param2, ...}</code> will log the given parameters.
+</p>
+<p>
+	<p>
+			As for other statements, the parameters of the statement are watched, so that the logging will be refreshed anytime one of those changes.
+		</p>
+		<p>
+			This relies on the logging utility of hashspace. The statement will forward to the main <code>log</code> method all the arguments passed to the statement, and will build itself the <code>metadata</code> object with the following values:
+			<ul>
+				<li><code>type</code>: <code>"debug"</code></li>
+				<li><code>file</code>: the file name in which the statement is used</li>
+				<li><code>dir</code>: the path of the directory in which the file is</li>
+				<li><code>line</code>: the line number in which the statement appears in the file</li>
+				<li><code>column</code>: the column number in which the statement appears on the line</li>
+			</ul>
+		</p>
+		
+</p>
+	<pre class="hashspace"><code>
+# template example()
+	{log scope}
+# /template
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="log_object___-__-metadata__">
+			log(object... [, metaData)] - Core
+		</h3>
+<p>
+	Logs data with <code>debug</code> level.
+</p>
+<p>
+	<p>
+			The function takes an arbitrary number of objects to log: they are all converted to string, and concatenated with a space to generate the final message to log.
+		</p>
+		<p>
+			If the last argument is an object which contains a property <code>type</code>, whose value is exactly among <code>"info"</code>, <code>"error"</code>, <code>"warning"</code> or <code>"debug"</code>, it will be interpreted as a metadata object, which will alter the final log data (and therefore will not be part of the message value of the latter).
+		</p>
+		<p>
+			Metadata can receive those following optional properties in addition to the <code>type</code> one:
+			<ul>
+				<li><code>id</code>: <code>{String|Number}</code> </li>
+				<li><code>message</code>: <code>{String}</code> </li>
+				<li><code>file</code>: <code>{String}</code> </li>
+				<li><code>dir</code>: <code>{String}</code> </li>
+				<li><code>code</code>: <code>{String}</code> </li>
+				<li><code>line</code>: <code>{Number}</code> </li>
+				<li><code>column</code>: <code>{Number}</code> </li>
+			</ul>
+		</p>
+		
+</p>
+	<pre class="hashspace"><code>
+log("message");
+	</code></pre>
+</section>
+<hr />
+	<section>
+		<h3 id="_let_">
+			{let} - Statement
+		</h3>
+<p>
+	Creates local variables in the current scope.
+</p>
+<p>
+	The scope is associated to a container block, and the latter can be:
+		<ul>
+			<li>template blocks</li>
+			<li>html block elements</li>
+			<li>condition blocks (<code>{if}</code>, <code>{else if}</code> or <code>{else}</code>)</li>
+			<li><code>{foreach} block</code></li>
+		</ul>
+		
+		<code>{let}</code> statements <strong>MUST</strong> appear at the beginning of the blocks where they appear!
+</p>
+	<pre class="hashspace"><code>
+# template example()
+	{let templateLevel}
+
+	&lt;div&gt;
+		{let htmlLevel1 = "htmlLevel1Value", htmlLevel2}
+	&lt;/div&gt;
+
+	{if condition}
+		{let ifLevel}
+	{else if condition2}
+		{let elseIfLevel}
+	{else}
+		{let elseLevel}
+	{/if}
+
+	{foreach value in container}
+		{let foreachLevel}
+	{/foreach}
+# /template
+	</code></pre>
+</section>
