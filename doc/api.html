@@ -1,23 +1,35 @@
 <hr />
 	<section>
-		<h3 id="template">
-			Template - Statement
+		<h3 id="_-template">
+			# template - Statement
 		</h3>
 <p>
-	<code># template</code> ... <code># /template</code> defines a template.
+	<code># template name(parameters)</code> ... <code># /template</code> is used to define a template.
 </p>
 <p>
-	For reminder the template definition follows the principles of function definition: a name and a list of formal parameters.
+	<p>
+			A template has the following properties:
 		
-		The whole template is converted to a JavaScript function, which returns a template instance with the given parameters when it gets called.
+			<ul>
+				<li><strong>a name</strong>: the name of the reference to the template; works as any variable</li>
+				<li><strong>formal parameters</strong>: a list of names for formal parameters. From the template, the names are used as references to the actual parameters. From the outside, actual parameters can be given <strong>both by position and name</strong>, depending on how the template is instantiated!</li>
+			</ul>
+		</p>
+		
+		<p>For reminder, a template is finally compiled by the engine and converted to a function, which returns a template instance bound to the given parameters when it gets called.</p>
+		
 </p>
-	<pre class="hashspace"><code>
-# template hello(name)
-	Hello {name}!
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
+# template hello(who)
+	Hello {who}!
 # /template
 
 var instance = hello("World");
-	</code></pre>
+
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -30,13 +42,17 @@ var instance = hello("World");
 <p>
 	
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 # template hello(name)
 	Hello {name}!
 # /template
 
 hello("World").render("output");
-	</code></pre>
+
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -48,15 +64,20 @@ hello("World").render("output");
 </p>
 <p>
 	This works as if it were a standard HTML element: the output will be generated at the place you put the statement and parameters are passed as attributes. <strong>Note that</strong> in this case the parameters are passed by name, not by their position.
+		
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 # template example()
 	&lt;#property value="..." key="..." /&gt;
 # /template
 
 # template property(key, value)
 # /template
-	</code></pre>
+
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -69,9 +90,12 @@ hello("World").render("output");
 <p>
 	This means that instead of giving a piece of JavaScript code to be executed in the global scope, you can use the standard call mechanisms, in the scope of the current module (file).
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 
-	</code></pre>
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -84,7 +108,9 @@ hello("World").render("output");
 <p>
 	
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 # template example(context)
 	Number is:
 	{if context.number &lt; 0}
@@ -97,7 +123,8 @@ hello("World").render("output");
 	&nbsp;({context.number === 0 ? 'null' : context.number}).
 # /template
 
-	</code></pre>
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -110,7 +137,9 @@ hello("World").render("output");
 <p>
 	Note that each iteration creates a new scope with the current value and possible index.
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 # template example(array)
 	&lt;ul&gt;
 	{foreach index, value in array}
@@ -119,7 +148,8 @@ hello("World").render("output");
 	&lt;/ul&gt;
 # /template
 
-	</code></pre>
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -140,7 +170,9 @@ hello("World").render("output");
 		This means that listeners added on the array will be notified about the changes.
 		</p>
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 var actions = [
 	{method: push, label: 'Push'},
 	{method: pop, label: 'Pop'},
@@ -191,7 +223,8 @@ function sort() {
 
 function splice() {array.splice(1, 0, 'spliced-1', 'spliced-2');}
 function splice2() {array.splice2(1, 0, ['spliced2-1', 'spliced2-2'])}
-	</code></pre>
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -204,10 +237,13 @@ function splice2() {array.splice2(1, 0, ['spliced2-1', 'spliced2-2'])}
 <p>
 	This method triggers the data-binding mechanisms.
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 var array = ['a', 'b', 'e', 'f'];
 array.splice2(2, 0, ['c', 'd']); // =&gt; ['a', 'b', 'c', 'd', 'e', 'f']
-	</code></pre>
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -218,27 +254,71 @@ array.splice2(2, 0, ['c', 'd']); // =&gt; ['a', 'b', 'c', 'd', 'e', 'f']
 	A logging utility.
 </p>
 <p>
-	<p>
-			Specific available methods are described below.
-		</p>
+	<p>How does logging works?</p>
+		
 		<p>
-			You can use one of the logging methods to push data to be logged. Then, all registered loggers will be called. Finally, the logger of the Hashspace engine itself will handle this if none of the user loggers returned <code>false</code>.
+			First, attach loggers with <code>log.addLogger(callback)</code>: they will receive the log entries when they are pushed.
 		</p>
+		
 		<p>
-			A log instance is more than a simple message, it is in fact a full object with the following properties:
+			Then, to create and push a log entry, you can use one of the logging methods or the <code>{log}</code> statement which works the same but sets itself more contextual information.
+		</p>
+		
+		<p>
+			Note that there is a specific logger built in the engine itself, which will also receive the entries that are pushed after all the other (user) loggers have processed. However if one of the latter returns <code>false</code>, this will be skipped.
+		</p>
+		
+		<p>
+			Here are the properties of a log entry:
+		
 			<ul>
-				<li><code>id</code>: <code>{String|Number}</code> </li>
-				<li><code>message</code>: <code>{String}</code> </li>
-				<li><code>file</code>: <code>{String}</code> </li>
-				<li><code>dir</code>: <code>{String}</code> </li>
-				<li><code>code</code>: <code>{String}</code> </li>
-				<li><code>line</code>: <code>{Number}</code> </li>
-				<li><code>column</code>: <code>{Number}</code> </li>
+				<li>
+					<code>type</code>: <code>{String}</code>
+		
+					The level of the log, that you can use to filter the entries. Will always be one of: <code>"info"</code>, <code>"error"</code>, <code>"warning"</code> or <code>"debug"</code>.
+				</li>
+				<li>
+					<code>message</code>: <code>{String}</code>
+		
+					The message of the log.
+				</li>
+				<li>
+					<code>id</code>: <code>{String|Number}</code>
+		
+					You can use it to identify your entries.
+				</li>
+				<li>
+					<code>file</code>: <code>{String}</code>
+		
+					The name of the file where the entry was issued.
+				</li>
+				<li>
+					<code>dir</code>: <code>{String}</code>
+		
+					The name of the directory containing the previously mentioned file.
+				</li>
+				<li>
+					<code>code</code>: <code>{String}</code>
+		
+					You can use it to specify a piece of code illustrating your message.
+				</li>
+				<li>
+					<code>line</code>: <code>{Number}</code>
+		
+					The line number associated to the entry; usually it corresponds to where you pushed the entry.
+				</li>
+				<li>
+					<code>column</code>: <code>{Number}</code>
+		
+					The column number associated to the entry inside the previously mentioned line.
+				</li>
 			</ul>
-			This object is built from the logging methods described below. It is also
 		</p>
+		
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 var log = require("hsp/rt/log");
 var myLoggingutility = require("./logging");
 
@@ -249,7 +329,8 @@ log.addLogger(function(message, metadata) {
 
 log("Here is my first log.")
 
-	</code></pre>
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -260,21 +341,14 @@ log("Here is my first log.")
 	Adds a logger to the logging utility.
 </p>
 <p>
-	The <code>handler</code> is a function receiving a log data object with the following properties:
-		<ul>
-			<li><code>id</code>: <code>{String|Number}</code> </li>
-			<li><code>message</code>: <code>{String}</code> </li>
-			<li><code>file</code>: <code>{String}</code> </li>
-			<li><code>dir</code>: <code>{String}</code> </li>
-			<li><code>code</code>: <code>{String}</code> </li>
-			<li><code>line</code>: <code>{Number}</code> </li>
-			<li><code>column</code>: <code>{Number}</code> </li>
-		</ul>
-		
+	The <code>handler</code> is a function receiving the log entry.
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 
-	</code></pre>
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -286,25 +360,50 @@ log("Here is my first log.")
 </p>
 <p>
 	<p>
-			As for other statements, the parameters of the statement are watched, so that the logging will be refreshed anytime one of those changes.
+			As for other statements, its parameters are watched, so that a new entry will be issued anytime one of these parameters changes.
 		</p>
+		
 		<p>
-			This relies on the logging utility of hashspace. The statement will forward to the main <code>log</code> method all the arguments passed to the statement, and will build itself the <code>metadata</code> object with the following values:
+			Apart form that, the log statement relies on the available logging methods. It will forward all the given parameters, and add its own metadata with the following values:
+		
 			<ul>
-				<li><code>type</code>: <code>"debug"</code></li>
-				<li><code>file</code>: the file name in which the statement is used</li>
-				<li><code>dir</code>: the path of the directory in which the file is</li>
-				<li><code>line</code>: the line number in which the statement appears in the file</li>
-				<li><code>column</code>: the column number in which the statement appears on the line</li>
+				<li>
+					<code>type</code>:
+		
+					<code>"debug"</code>
+				</li>
+				<li>
+					<code>file</code>:
+		
+					the file name in which the statement is used
+				</li>
+				<li>
+					<code>dir</code>:
+		
+					the path of the directory in which the file is
+				</li>
+				<li>
+					<code>line</code>:
+		
+					the line number in which the statement appears in the file
+				</li>
+				<li>
+					<code>column</code>:
+		
+					the column number in which the statement appears on the line
+				</li>
 			</ul>
 		</p>
 		
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 # template example()
 	{log scope}
 # /template
-	</code></pre>
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -315,29 +414,89 @@ log("Here is my first log.")
 	Logs data with <code>debug</code> level.
 </p>
 <p>
-	<p>
-			The function takes an arbitrary number of objects to log: they are all converted to string, and concatenated with a space to generate the final message to log.
-		</p>
+	<p>Creates and pushes a log entry.</p>
+		
 		<p>
-			If the last argument is an object which contains a property <code>type</code>, whose value is exactly among <code>"info"</code>, <code>"error"</code>, <code>"warning"</code> or <code>"debug"</code>, it will be interpreted as a metadata object, which will alter the final log data (and therefore will not be part of the message value of the latter).
-		</p>
-		<p>
-			Metadata can receive those following optional properties in addition to the <code>type</code> one:
+			It takes two types of arguments:
+		
 			<ul>
-				<li><code>id</code>: <code>{String|Number}</code> </li>
-				<li><code>message</code>: <code>{String}</code> </li>
-				<li><code>file</code>: <code>{String}</code> </li>
-				<li><code>dir</code>: <code>{String}</code> </li>
-				<li><code>code</code>: <code>{String}</code> </li>
-				<li><code>line</code>: <code>{Number}</code> </li>
-				<li><code>column</code>: <code>{Number}</code> </li>
+				<li>
+					A variable list of any kind of object: each will be converted to a string and then they will all be concatenated using a single white space. Finally, this will be used as the value for the <code>message</code> property of the entry.
+				</li>
+				<li>
+					An optional set of metadata that mainly matches the properties of the created entry (see below).
+				</li>
+			</ul>
+		</p>
+		
+		<p>
+			The last argument will be interpreted as the metadata only if:
+		
+			<ol>
+				<li>it is not the first argument and</li>
+				<li>it is an object,</li>
+				<li>which contains a property <code>type</code>,</li>
+				<li>whose value exactly corresponds to one of those we can find in entries' <code>type</code> property</li>
+			</ol>
+		</p>
+		
+		<p>
+			Here are the properties of the metadata object and how they are used to build the log entry:
+		
+			<ul>
+				<li>
+					<code>type</code>: <code>{String|Number}</code>
+		
+					Will set the <code>type</code> of the entry, and by definition will always be one of the accepted types.
+				</li>
+				<li>
+					<code>id</code>:
+		
+					sets the <code>id</code> property of the entry.
+				</li>
+				<!--
+				<li>
+					<code>message</code>: <code>{String}</code>
+		
+		
+				</li>
+				 -->
+				<li>
+					<code>file</code>:
+		
+		
+					sets the <code>file</code> property of the entry.
+				</li>
+				<li>
+					<code>dir</code>:
+		
+					sets the <code>dir</code> property of the entry.
+				</li>
+				<li>
+					<code>code</code>:
+		
+					sets the <code>code</code> property of the entry.
+				</li>
+				<li>
+					<code>line</code>:
+		
+					sets the <code>line</code> property of the entry.
+				</li>
+				<li>
+					<code>column</code>:
+		
+					sets the <code>column</code> property of the entry.
+				</li>
 			</ul>
 		</p>
 		
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 log("message");
-	</code></pre>
+		</code></pre>
+	</p>
 </section>
 <hr />
 	<section>
@@ -345,20 +504,24 @@ log("message");
 			{let} - Statement
 		</h3>
 <p>
-	Creates local variables in the current scope.
+	Creates local variables in the current scope. Multiple variables can be declared, and they can be initialized too.
 </p>
 <p>
 	The scope is associated to a container block, and the latter can be:
+		
 		<ul>
 			<li>template blocks</li>
 			<li>html block elements</li>
-			<li>condition blocks (<code>{if}</code>, <code>{else if}</code> or <code>{else}</code>)</li>
-			<li><code>{foreach} block</code></li>
+			<li>condition blocks: <code>{if}</code>, <code>{else if}</code> or <code>{else}</code></li>
+			<li><code>{foreach}</code> block</li>
 		</ul>
 		
-		<code>{let}</code> statements <strong>MUST</strong> appear at the beginning of the blocks where they appear!
+		<code>{let}</code> statements <strong>MUST</strong> appear at the beginning of the blocks where they are used!
+		
 </p>
-	<pre class="hashspace"><code>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
 # template example()
 	{let templateLevel}
 
@@ -378,5 +541,7 @@ log("message");
 		{let foreachLevel}
 	{/foreach}
 # /template
-	</code></pre>
+
+		</code></pre>
+	</p>
 </section>

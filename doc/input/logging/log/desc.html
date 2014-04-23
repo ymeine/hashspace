@@ -1,18 +1,75 @@
+<p>Creates and pushes a log entry.</p>
+
 <p>
-	The function takes an arbitrary number of objects to log: they are all converted to string, and concatenated with a space to generate the final message to log.
-</p>
-<p>
-	If the last argument is an object which contains a property <code>type</code>, whose value is exactly among <code>"info"</code>, <code>"error"</code>, <code>"warning"</code> or <code>"debug"</code>, it will be interpreted as a metadata object, which will alter the final log data (and therefore will not be part of the message value of the latter).
-</p>
-<p>
-	Metadata can receive those following optional properties in addition to the <code>type</code> one:
+	It takes two types of arguments:
+
 	<ul>
-		<li><code>id</code>: <code>{String|Number}</code> </li>
-		<li><code>message</code>: <code>{String}</code> </li>
-		<li><code>file</code>: <code>{String}</code> </li>
-		<li><code>dir</code>: <code>{String}</code> </li>
-		<li><code>code</code>: <code>{String}</code> </li>
-		<li><code>line</code>: <code>{Number}</code> </li>
-		<li><code>column</code>: <code>{Number}</code> </li>
+		<li>
+			A variable list of any kind of object: each will be converted to a string and then they will all be concatenated using a single white space. Finally, this will be used as the value for the <code>message</code> property of the entry.
+		</li>
+		<li>
+			An optional set of metadata that mainly matches the properties of the created entry (see below).
+		</li>
+	</ul>
+</p>
+
+<p>
+	The last argument will be interpreted as the metadata only if:
+
+	<ol>
+		<li>it is not the first argument and</li>
+		<li>it is an object,</li>
+		<li>which contains a property <code>type</code>,</li>
+		<li>whose value exactly corresponds to one of those we can find in entries' <code>type</code> property</li>
+	</ol>
+</p>
+
+<p>
+	Here are the properties of the metadata object and how they are used to build the log entry:
+
+	<ul>
+		<li>
+			<code>type</code>: <code>{String|Number}</code>
+
+			Will set the <code>type</code> of the entry, and by definition will always be one of the accepted types.
+		</li>
+		<li>
+			<code>id</code>:
+
+			sets the <code>id</code> property of the entry.
+		</li>
+		<!--
+		<li>
+			<code>message</code>: <code>{String}</code>
+
+
+		</li>
+		 -->
+		<li>
+			<code>file</code>:
+
+
+			sets the <code>file</code> property of the entry.
+		</li>
+		<li>
+			<code>dir</code>:
+
+			sets the <code>dir</code> property of the entry.
+		</li>
+		<li>
+			<code>code</code>:
+
+			sets the <code>code</code> property of the entry.
+		</li>
+		<li>
+			<code>line</code>:
+
+			sets the <code>line</code> property of the entry.
+		</li>
+		<li>
+			<code>column</code>:
+
+			sets the <code>column</code> property of the entry.
+		</li>
 	</ul>
 </p>

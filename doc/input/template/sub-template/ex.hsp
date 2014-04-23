@@ -1,0 +1,15 @@
+# template example(context)
+	<#context.propertyDisplayer value="..." key="..." />
+# /template
+
+# template JSONProperty(property, value)
+	{property}: {value}
+# /template
+
+# template HTMLAttribute(name, value)
+	{name} = {value}
+# /template
+
+var context = {propertyDisplayer: JSONProperty}
+
+example(context);

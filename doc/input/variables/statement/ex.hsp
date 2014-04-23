@@ -1,0 +1,19 @@
+# template example()
+	{let templateLevel}
+
+	<div>
+		{let htmlLevel1 = "htmlLevel1Value", htmlLevel2}
+	</div>
+
+	{if condition}
+		{let ifLevel}
+	{else if condition2}
+		{let elseIfLevel}
+	{else}
+		{let elseLevel}
+	{/if}
+
+	{foreach value in container}
+		{let foreachLevel}
+	{/foreach}
+# /template

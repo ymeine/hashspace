@@ -1,0 +1,11 @@
+# template example(id)
+	<div id="{id}"></div>
+# /template
+
+# template included()
+	I am included using a DOM id! (there are better alternatives to do that though)
+# /template
+
+var id = "uniqueId";
+example(id).render("output");
+included().render(uniqueId);

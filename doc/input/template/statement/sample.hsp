@@ -1,0 +1,5 @@
+# template hello(name)
+	Hello {name}!
+# /template
+
+hello("World").render("output");

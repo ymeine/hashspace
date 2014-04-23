@@ -1,0 +1,24 @@
+# template example(properties)
+	<ul>
+	{foreach prop in properties}
+		<li><#property value="{prop.value}" name="{prop.name}" /></li>
+	{/foreach}
+	</ul>
+# /template
+
+# template property(name, value)
+	{name}: {value}
+# /template
+
+var properties = [
+	{
+		name: "prop1",
+		value: "prop1Value"
+	},
+	{
+		name: "prop2",
+		value: "prop2Value"
+	}
+];
+
+example(properties).render("output");

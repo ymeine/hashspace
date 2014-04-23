@@ -1,0 +1,5 @@
+# template example(who, formal)
+	{"Hello", who, formal ? '.' : "!"}
+# /template
+
+example("you", true).render("output");

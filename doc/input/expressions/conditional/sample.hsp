@@ -1,0 +1,16 @@
+# template example(context)
+	<input type="button" value ="{context.hide ? 'Show' : 'Hide'}" onclick="{toggleVisibility(context)}"/>
+	<br/>
+	{context.message: !context.hide}
+# /template
+
+var context = {
+	message: 'The message',
+	hide: false
+}
+
+function toggleVisibility(context) {
+	context.hide = !context.hide;
+}
+
+example(context).render("output");

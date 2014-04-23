@@ -1,0 +1,5 @@
+# template hello(who)
+	Hello {who}!
+# /template
+
+hello("World").render("output");

@@ -1,0 +1,19 @@
+<p>
+	Full syntax looks like this: <code>&lt;#subTemplateReference param1="param1Value param2="param2Value"/&gt;</code>.
+</p>
+
+<p>
+	It is intended to look like a standard HTML element in use: it's an element with a name and attributes. This means mainly two important things:
+	<ul>
+		<li>parameters of the template (attributes) are passed by name, not by position</li>
+		<li>it not only instantiates the template but also renders it automatically in a DOM element inserted exactly where the statement is used
+	</ul>
+</p>
+
+<p>
+	There is however a little difference which makes the feature far more powerful: the statement is not expecting a simple template name, it takes a reference to it, and the expression corresponding to this reference follows the binding rules. This means that you can change the value pointed by this reference at some point, and the parent template will get refreshed thanks to the binding, using the new template.
+</p>
+
+<p>
+	Please note that attributes/parameters will follow the usual binding rules.
+</p>
