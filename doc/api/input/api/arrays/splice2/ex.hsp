@@ -1,0 +1,2 @@
+var array = ['a', 'b', 'e', 'f'];
+array.splice2(2, 0, ['c', 'd']); // => ['a', 'b', 'c', 'd', 'e', 'f']

@@ -1,0 +1,17 @@
+# template example(array)
+	<a onclick="{update()}">Update</a>
+
+	<ul>
+	{foreach value in array}
+		<li>{value}</li>
+	{/foreach}
+	</ul>
+# /template
+
+var array = ['a', 'b', 'e', 'f'];
+
+example(array).render("output");
+
+function update() {
+	array.splice2(2, 0, ['c', 'd']);
+}
