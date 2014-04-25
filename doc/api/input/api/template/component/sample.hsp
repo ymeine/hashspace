@@ -1,0 +1,18 @@
+var klass = require("hsp/klass");
+
+var Controller = klass({
+	attributes: {
+		text: {type: "string", defaultValue: "", binding: "none"}
+	}
+});
+
+# template sub using controller:Controller
+	{controller.text}
+# /template
+
+# template example using controller:Controller
+	{controller.text}<br/>
+	<#sub text="Instantiated with statement"/>
+# /template
+
+example({text: "Instantiated with API"}).render("output");

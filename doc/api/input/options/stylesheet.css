@@ -3,6 +3,13 @@ body {
     color: rgba(0, 0, 0, 0.85);
     margin: auto;
     width: 21cm;
+
+    border-right: solid gray 1px;
+    border-left: solid gray 1px;
+    border-radius: 0.5em;
+    padding: 2em;
+    margin-top: 5px;
+    box-shadow: 0px -5px 10px black;
 }
 
 
@@ -26,4 +33,14 @@ code {
 pre > code {
     border: none;
     background-color: transparent;
+}
+
+
+
+hr {
+    /*background-color: gray;*/
+    background-color: rgba(0, 0, 255, 0.1);
+    border: solid gray 0px;
+    border-radius: 1em;
+    height: 1em;
 }

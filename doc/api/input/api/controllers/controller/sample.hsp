@@ -1,0 +1,31 @@
+var klass = require("hsp/klass");
+
+
+
+var Controller = klass({
+	attributes: {
+		text: {type: "string", defaultValue: "", binding: "none"},
+		number: {type: "int", defaultValue: 0, binding: "1-way"},
+		bool: {type: "bool", defaultValue: false, binding: "2-way"}
+	},
+
+	init: function() {
+
+	},
+
+	dispose: function() {
+
+	}
+});
+
+
+
+# template example using controller:Controller
+	<div>Text: {controller.text}</div>
+	<div>Number: {controller.number}</div>
+	<div>Boolean: {controller.bool}</div>
+# /template
+
+
+
+example().render("output");

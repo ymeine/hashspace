@@ -1,16 +1,31 @@
-# template example(properties)
+# template example(context)
+	<input type="button" onclick="{toggleView(context)}" value="{'Toggle view'}" />
 	<ul>
-	{foreach prop in properties}
-		<li><#property value="{prop.value}" name="{prop.name}" /></li>
+	{foreach prop in context.properties}
+		<li><#context.propertyDisplayer value="{prop.value}" name="{prop.name}" /></li>
 	{/foreach}
 	</ul>
 # /template
 
-# template property(name, value)
+# template JSONProperty(value, name)
 	{name}: {value}
 # /template
 
-var properties = [
+# template HTMLAttribute(name, value)
+	{name} = {value}
+# /template
+
+
+
+function toggleView(context) {
+	var view = context.propertyDisplayer === JSONProperty ? HTMLAttribute : JSONProperty;
+	context.propertyDisplayer = view;
+}
+
+
+
+var context = {propertyDisplayer: JSONProperty}
+context.properties = [
 	{
 		name: "prop1",
 		value: "prop1Value"
@@ -21,4 +36,4 @@ var properties = [
 	}
 ];
 
-example(properties).render("output");
+example(context).render("output");

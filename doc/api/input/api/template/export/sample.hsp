@@ -1,0 +1,5 @@
+# export template example
+	...
+# /template
+
+example().render("output");

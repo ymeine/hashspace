@@ -1,0 +1,26 @@
+var Controller = klass({
+	attributes: {
+		"head":{type:"template"},
+		"body":{type:"template", defaultContent:true}
+	}
+});
+
+
+
+# template panel using controller:Controller
+  <#controller.head/>
+  <#controller.body/>
+# /template
+
+# template example()
+	<#panel body="..."/>
+
+	<#panel head="...">
+		{m.text}! <a onclick="{update(1)}">Update model</a>
+	</#panel>
+
+	<#panel>
+		<@head>Panel C: <a onclick="{update(10)}">Update model</a></@head>
+		<@body>{m.text}! <a onclick="{update(100)}">Update model</a></@body>
+	</#panel>
+# /template

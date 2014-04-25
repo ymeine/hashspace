@@ -9,6 +9,13 @@ body {
     color: rgba(0, 0, 0, 0.85);
     margin: auto;
     width: 21cm;
+
+    border-right: solid gray 1px;
+    border-left: solid gray 1px;
+    border-radius: 0.5em;
+    padding: 2em;
+    margin-top: 5px;
+    box-shadow: 0px -5px 10px black;
 }
 
 
@@ -34,6 +41,16 @@ pre > code {
     background-color: transparent;
 }
 
+
+
+hr {
+    /*background-color: gray;*/
+    background-color: rgba(0, 0, 255, 0.1);
+    border: solid gray 0px;
+    border-radius: 1em;
+    height: 1em;
+}
+
 	</style>
 </head>
 <body>
@@ -56,7 +73,6 @@ pre > code {
 		</p>
 		
 		<p>For reminder, a template is finally compiled by the engine and converted to a function, which returns a template instance bound to the given parameters when it gets called.</p>
-		
 </p>
 	<p>
 		<strong><em>Example:</em></strong>
@@ -66,7 +82,6 @@ pre > code {
 # /template
 
 var instance = hello("World");
-
 		</code></pre>
 	</p>
 </section>
@@ -89,7 +104,34 @@ var instance = hello("World");
 # /template
 
 hello("World").render("output");
-
+		</code></pre>
+	</p>
+</section>
+<hr />
+	<section>
+		<h3 id="_-export-template-name">
+			# export template name - Statement
+		</h3>
+<p>
+	Exports a template in the current module.
+</p>
+<p>
+	<p>
+			The export feature is something provided by the CommonJS implementation on which hashspace relies.
+		</p>
+		<p>
+			The latter has a JavaScript API in order to export a value in a module.
+		</p>
+		<p>
+			However the template statement provides a shortcut to export a template under a property corresponding to its given name, which is to put <code>export</code> at the very beginning of the statement, after the hash character.
+		</p>
+</p>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
+# export template example()
+	...
+# /template
 		</code></pre>
 	</p>
 </section>
@@ -103,11 +145,11 @@ hello("World").render("output");
 </p>
 <p>
 	<p>
-			Full syntax looks like this: <code>&lt;#subTemplateReference param1="param1Value param2="param2Value"/&gt;</code>.
+			Full syntax looks like this: <code>&lt;#subTemplateReference param1="param1Value param2="param2Value"/&gt;</code> or <code>&lt;#subTemplateReference param1="param1Value param2="param2Value"&gt; ... &lt;/#subTemplateReference&gt;</code>.
 		</p>
 		
 		<p>
-			It is intended to look like a standard HTML element in use: it is an element with a name and attributes. This means mainly two important things:
+			It is intended to look like a standard HTML element in use: it is an element with a name and attributes, that can be used both in inline and block forms. This means mainly two important things:
 			<ul>
 				<li>parameters of the template (attributes) are passed by name, not by position</li>
 				<li>it not only instantiates the template but also renders it automatically in a DOM element inserted exactly where the statement is used
@@ -122,6 +164,9 @@ hello("World").render("output");
 			Please note that attributes/parameters will also follow the usual binding rules.
 		</p>
 		
+		<p>
+			Last but not least: you will use the block form of the statement only if you have to pass <code>template</code> attributes' values to the subtemplate. See <a href="#template">corresponding section</a>.
+		</p>
 </p>
 	<p>
 		<strong><em>Example:</em></strong>
@@ -141,7 +186,188 @@ hello("World").render("output");
 var context = {propertyDisplayer: JSONProperty}
 
 example(context);
+		</code></pre>
+	</p>
+</section>
+<hr />
+	<section>
+		<h3 id="component">
+			Component - Statement
+		</h3>
+<p>
+	A component is a template associated to a controller.
+</p>
+<p>
+	<p>
+			Syntax: <code># template name using ref:Class</code>
+		</p>
+		<p>
+			The difference with other templates is that it doesn't declare input arguments, but rather a class to use as controller, and a name to reference the latter's instance when the template itself is instantiated.
+		</p>
+		<p>
+			When the template is instantiated, a new instance of its controller is created too and bound to the given variable name which is available in the scope of the template. When instantiating its controller, the template calls its <code>init</code> method after all its internal processing (like handling the input parameters, creating the associated attributes, etc).
+		</p>
+		<p>
+			Even though the template doesn't declare its list of input arguments, in fact it takes <code>a single argument</code> which is an object whose properties must correspond to the attributes defined in the controller's class. Note that if you instantiate the template using the subtemplate statement, this object is automatically built from the specified attributes.
+		</p>
+</p>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
+var klass = require("hsp/klass");
 
+var Controller = klass({
+	attributes: {
+		text: {type: "string", defaultValue: "", binding: "none"}
+	}
+});
+
+# template sub using controller:Controller
+	{controller.text}
+# /template
+
+# template example using controller:Controller
+	{controller.text}&lt;br/&gt;
+	&lt;#sub text="Instantiated with statement"/&gt;
+# /template
+
+example({text: "Instantiated with API"});
+		</code></pre>
+	</p>
+</section>
+<hr />
+	<section>
+		<h3 id="controller">
+			Controller - Core
+		</h3>
+<p>
+	A controller is a class with specificities used by templates.
+</p>
+<p>
+	<p>
+			Controllers are aimed to be used together with templates.
+		</p>
+		<p>
+			A controller is a class, which means a set of methods and attributes, and the concept of instances
+		</p>
+		<p>
+			Features:
+			<ul>
+				<li>attributes</li>
+				<li>
+				<ul>
+					<li>typing</li>
+					<li>binding: 1 way = out (template) -> in (controller), 2 way = the other way too</li>
+					<li>default values</li>
+					<li><code>on[Attribute]Change</code></li>
+				</ul>
+				</li>
+				<li><code>init</code></li>
+				<li><code>dispose</code></li>
+			</ul>
+		</p>
+</p>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
+var klass = require("hsp/klass");
+
+
+
+var Controller = klass({
+	attributes: {
+		text: {type: "string", defaultValue: "", binding: "none"},
+		number: {type: "int", defaultValue: 0, binding: "1-way"},
+		bool: {type: "bool", defaultValue: false, binding: "2-way"}
+	},
+
+	init: function() {
+
+	},
+
+	dispose: function() {
+
+	}
+});
+		</code></pre>
+	</p>
+</section>
+<hr />
+	<section>
+		<h3 id="callback">
+			callback - Type
+		</h3>
+<p>
+	
+</p>
+<p>
+	
+</p>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
+
+		</code></pre>
+	</p>
+</section>
+<hr />
+	<section>
+		<h3 id="template">
+			template - Type
+		</h3>
+<p>
+	
+</p>
+<p>
+	<p>
+			Attributes with type <code>template</code> expect to receive a template source as a value, therefore a string. The latter will be automatically compiled, and then one will be able to use the attribute to reference the generated template - as any other reference to a template.
+		</p>
+		
+		<p>
+			Like any other attribute, its value can be passed using the standard ways (subtemplate attribute or <code>render</code> API).
+		</p>
+		
+		<p>
+			However there are additional ways to pass this value, closer to the HTML style using the block form of the subtemplate statement.
+		</p>
+		
+		<p>
+			Using this form, you can specify each template attribute's value with the special <em>attribute</em> statement: <code>&lt;@attr&gt; ... &lt;/@attr&gt;</code>.
+		</p>
+		
+		<p>
+			Otherwise you can directly insert the template's content, without naming explicitly any attribute. The attribute receiving the value will be the one defined with an additional property <code>defaultContent</code> set to <code>true</code>, or if there is only one attribute defined with the type <code>template</code>, it will receive it.
+		</p>
+</p>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
+var Controller = klass({
+	attributes: {
+		"head":{type:"template"},
+		"body":{type:"template", defaultContent:true}
+	}
+});
+
+
+
+# template panel using controller:Controller
+  &lt;#controller.head/&gt;
+  &lt;#controller.body/&gt;
+# /template
+
+# template example()
+	&lt;#panel body="..."/&gt;
+
+	&lt;#panel head="..."&gt;
+		{m.text}! &lt;a onclick="{update(1)}"&gt;Update model&lt;/a&gt;
+	&lt;/#panel&gt;
+
+	&lt;#panel&gt;
+		&lt;@head&gt;Panel C: &lt;a onclick="{update(10)}"&gt;Update model&lt;/a&gt;&lt;/@head&gt;
+		&lt;@body&gt;{m.text}! &lt;a onclick="{update(100)}"&gt;Update model&lt;/a&gt;&lt;/@body&gt;
+	&lt;/#panel&gt;
+# /template
 		</code></pre>
 	</p>
 </section>
@@ -170,7 +396,6 @@ example(context);
 		</h3>
 <p>
 	You can conditionally execute parts of the template using either <code>{if}/{else if}/{else}</code> statements, or using a ternary expression.
-		
 </p>
 <p>
 	
@@ -189,7 +414,6 @@ example(context);
 	{/if}
 	&nbsp;({context.number === 0 ? 'null' : context.number}).
 # /template
-
 		</code></pre>
 	</p>
 </section>
@@ -214,7 +438,6 @@ example(context);
 	{/foreach}
 	&lt;/ul&gt;
 # /template
-
 		</code></pre>
 	</p>
 </section>
@@ -236,7 +459,6 @@ example(context);
 		<p>
 		This means that listeners added on the array will be notified about the changes.
 		</p>
-		
 </p>
 	<p>
 		<strong><em>Example:</em></strong>
@@ -291,7 +513,6 @@ function sort() {
 
 function splice() {array.splice(1, 0, 'spliced-1', 'spliced-2');}
 function splice2() {array.splice2(1, 0, ['spliced2-1', 'spliced2-2'])}
-
 		</code></pre>
 	</p>
 </section>
@@ -302,18 +523,15 @@ function splice2() {array.splice2(1, 0, ['spliced2-1', 'spliced2-2'])}
 		</h3>
 <p>
 	Equivalent of standard <code>splice</code> but using a list of items instead of relying on the variable length of the arguments list.
-		
 </p>
 <p>
 	This method triggers the data-binding mechanisms.
-		
 </p>
 	<p>
 		<strong><em>Example:</em></strong>
 		<pre class="hashspace"><code>
 var array = ['a', 'b', 'e', 'f'];
 array.splice2(2, 0, ['c', 'd']); // =&gt; ['a', 'b', 'c', 'd', 'e', 'f']
-
 		</code></pre>
 	</p>
 </section>
@@ -386,7 +604,6 @@ array.splice2(2, 0, ['c', 'd']); // =&gt; ['a', 'b', 'c', 'd', 'e', 'f']
 				</li>
 			</ul>
 		</p>
-		
 </p>
 	<p>
 		<strong><em>Example:</em></strong>
@@ -400,7 +617,6 @@ log.addLogger(function(message, metadata) {
 });
 
 log("Here is my first log.")
-
 		</code></pre>
 	</p>
 </section>
@@ -429,7 +645,6 @@ log("Here is my first log.")
 		</h3>
 <p>
 	<code>{log param1, param2, ...}</code> will log the given parameters.
-		
 </p>
 <p>
 	<p>
@@ -467,7 +682,6 @@ log("Here is my first log.")
 				</li>
 			</ul>
 		</p>
-		
 </p>
 	<p>
 		<strong><em>Example:</em></strong>
@@ -485,7 +699,6 @@ log("Here is my first log.")
 		</h3>
 <p>
 	Logs data with <code>debug</code> level.
-		
 </p>
 <p>
 	<p>Creates and pushes a log entry.</p>
@@ -563,7 +776,6 @@ log("Here is my first log.")
 				</li>
 			</ul>
 		</p>
-		
 </p>
 	<p>
 		<strong><em>Example:</em></strong>
@@ -591,7 +803,6 @@ log("message");
 		</ul>
 		
 		<code>{let}</code> statements <strong>MUST</strong> appear at the beginning of the blocks where they are used!
-		
 </p>
 	<p>
 		<strong><em>Example:</em></strong>
@@ -615,7 +826,73 @@ log("message");
 		{let foreachLevel}
 	{/foreach}
 # /template
-
+		</code></pre>
+	</p>
+</section>
+<hr />
+	<section>
+		<h3 id="inputs">
+			inputs - HTML
+		</h3>
+<p>
+	Input with value synchronization.
+</p>
+<p>
+	<p>
+			You can define input elements as you would do in pure HTML.
+		</p>
+		<p>
+			As for other elements inside a template, inputs support expressions for all their attributes, and thus binding.
+		</p>
+		<p>
+			The interesting thing is that if such an expression is used to define the <code>value</code> attribute of the input, this value will be synchronized with the data model (classical binding).
+		</p>
+		<p>
+			This synchronization is done one the <code>keyup</code> event.
+		</p>
+		<p>
+			The attribute <code>model</code> can be used instead of <code>value</code>. This has been introduced to enhance the capability of some specific inputs (for details, see sections below).
+		</p>
+</p>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
+&lt;input type="text" value="{data.text}" /&gt;
+&lt;input type="text" model="{data.text}" /&gt;
+		</code></pre>
+	</p>
+</section>
+<hr />
+	<section>
+		<h3 id="radio-input">
+			radio input - HTML
+		</h3>
+<p>
+	Define radio button inputs, with automatic grouping.
+</p>
+<p>
+	<p>
+			Radio buttons are special since they behave as a group of values where only one is selected at a time.
+		</p>
+		<p>
+			Indeed, a radio button alone holds both a selected state and a value.
+		</p>
+		<p>
+			A group of radio buttons on its hand will have a single value, corresponding to its currently selected one. But they all aim at setting the <strong>same property of the same model</strong>.
+		</p>
+		<p>
+			That's why we introduced an additional attribute, called <code>model</code>, which will contain the expression referencing the property of the model to bind. This property will receive the value specified in the attribute <code>value</code> of the currently selected radio button.
+		</p>
+		<p>
+			Since a group of radio buttons is naturally identified by the fact that they all reference the same property of the model, groups will automatically be built regarding the value of the <code>model</code> attribute.
+		</p>
+</p>
+	<p>
+		<strong><em>Example:</em></strong>
+		<pre class="hashspace"><code>
+&lt;input type="radio" model="{data.value}" value="first" /&gt;
+&lt;input type="radio" model="{data.value}" value="second" /&gt;
+&lt;input type="radio" model="{data.value}" value="third" /&gt;
 		</code></pre>
 	</p>
 </section>

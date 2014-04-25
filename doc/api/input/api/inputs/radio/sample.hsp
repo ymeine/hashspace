@@ -1,0 +1,21 @@
+var group = ['first', 'second', 'third']
+var group2 = ['4th', '5th', '6th']
+
+# template example(data)
+	<div>{data.value}</div>
+	{foreach value in group}
+		<div><input type="radio" model="{data.value}" value="{value}" />{value}</div>
+	{/foreach}
+
+	<div>{data.value2}</div>
+	{foreach value in group2}
+		<div><input type="radio" model="{data.value2}" value="{value}" />{value}</div>
+	{/foreach}
+# /template
+
+var data = {
+	value: '',
+	value2: ''
+}
+
+example(data).render("output")

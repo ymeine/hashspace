@@ -1,9 +1,9 @@
 # template example(context)
-	<#context.propertyDisplayer value="..." key="..." />
+	<#context.propertyDisplayer value="..." name="..." />
 # /template
 
-# template JSONProperty(property, value)
-	{property}: {value}
+# template JSONProperty(value, name)
+	{name}: {value}
 # /template
 
 # template HTMLAttribute(name, value)

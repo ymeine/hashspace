@@ -1,0 +1,3 @@
+<input type="radio" model="{data.value}" value="first" />
+<input type="radio" model="{data.value}" value="second" />
+<input type="radio" model="{data.value}" value="third" />

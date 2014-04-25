@@ -1,0 +1,16 @@
+var inputTypes = ['text', 'button', 'range', 'password']
+
+# template example(data)
+	<input type="{data.type}" value="{data.value}" /> = {data.value}
+	<br />
+	{foreach inputType in inputTypes}
+		<div><input type="radio" model="{data.type}" value="{inputType}" />{inputType}</div>
+	{/foreach}
+# /template
+
+var data = {
+	type: 'text',
+	value: ''
+}
+
+example(data).render("output")

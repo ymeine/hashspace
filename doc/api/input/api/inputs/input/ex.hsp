@@ -1,0 +1,2 @@
+<input type="text" value="{data.text}" />
+<input type="text" model="{data.text}" />
