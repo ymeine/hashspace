@@ -1,11 +1,10 @@
 body {
     font-family: Helvetica;
-    /*color: rgba(0, 0, 0, 0.85);*/
-    color: red;
-
+    color: rgba(0, 0, 0, 0.85);
     margin: auto;
     width: 21cm;
 }
+
 
 pre {
     border: inset 1px black;

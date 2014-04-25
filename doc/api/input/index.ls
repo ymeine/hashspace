@@ -1,4 +1,4 @@
-require('loader').Loader(module).reload {
-	options: './options'
-	api: './api'
+export {
+	options: require './options'
+	api: require './api'
 }

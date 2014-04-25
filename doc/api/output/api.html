@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>Hashspace — API Doc </title>
 	<style>
 body {
@@ -9,6 +10,7 @@ body {
     margin: auto;
     width: 21cm;
 }
+
 
 pre {
     border: inset 1px black;
@@ -105,7 +107,7 @@ hello("World").render("output");
 		</p>
 		
 		<p>
-			It is intended to look like a standard HTML element in use: it's an element with a name and attributes. This means mainly two important things:
+			It is intended to look like a standard HTML element in use: it is an element with a name and attributes. This means mainly two important things:
 			<ul>
 				<li>parameters of the template (attributes) are passed by name, not by position</li>
 				<li>it not only instantiates the template but also renders it automatically in a DOM element inserted exactly where the statement is used
@@ -113,11 +115,11 @@ hello("World").render("output");
 		</p>
 		
 		<p>
-			There is however a little difference which makes the feature far more powerful: the statement is not expecting a simple template name, it takes a reference to it, and the expression corresponding to this reference follows the binding rules. This means that you can change the value pointed by this reference at some point, and the parent template will get refreshed thanks to the binding, using the new template.
+			There is however a little difference which makes the feature far more powerful: the statement is not expecting a simple template name, it takes a reference to it through an expression. Since this is an expression, its follows the binding rules. This means that you can change the referenced value at some point, and the parent template will get refreshed thanks to the binding, using the new subtemplate thanks to the reference.
 		</p>
 		
 		<p>
-			Please note that attributes/parameters will follow the usual binding rules.
+			Please note that attributes/parameters will also follow the usual binding rules.
 		</p>
 		
 </p>
@@ -125,11 +127,11 @@ hello("World").render("output");
 		<strong><em>Example:</em></strong>
 		<pre class="hashspace"><code>
 # template example(context)
-	&lt;#context.propertyDisplayer value="..." key="..." /&gt;
+	&lt;#context.propertyDisplayer value="..." name="..." /&gt;
 # /template
 
-# template JSONProperty(property, value)
-	{property}: {value}
+# template JSONProperty(value, name)
+	{name}: {value}
 # /template
 
 # template HTMLAttribute(name, value)
