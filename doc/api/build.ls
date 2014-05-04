@@ -7,16 +7,22 @@ require! {
 
 
 
-export run = ->
-	loader.clearCache!
+export run = (clear) ->
+	clear ?= yes
+
+	if clear => loader.clearCache!
 
 	{api, options} = require './input'
 	require! 'builder'
 
-	path = node-path.join __dirname, 'output', options.output
-	output = builder.apiToHTML api, options.stylesheet
+	basepath = node-path.join __dirname, 'output', options.output
 
-	fs.writeFileSync path, output
+	html = builder.apiToHTML api, options.stylesheet
+	markdown = builder.apiToMarkdown api
+
+	fs.writeFileSync "#basepath.html", html
+	fs.writeFileSync "#basepath.md", markdown
+
 	console.log 'Build done with success'
 
 
@@ -24,4 +30,4 @@ export run = ->
 
 
 if require.main is module
-	run!
+	run off

@@ -10,8 +10,9 @@ gulp.task \default <[ watch ]> ->
 
 # ------------------------------------------------------------------------------
 
-gulp.task \build -> build.run!
+gulp.task \build -> build.run off
+gulp.task \build-live -> build.run!
 
 # ------------------------------------------------------------------------------
 
-gulp.task \watch ->	gulp.watch ['./input/**' './node_modules/builder/**'] <[ build ]>
+gulp.task \watch ->	gulp.watch ['./input/**' './node_modules/builder/**'] <[ build-live ]>

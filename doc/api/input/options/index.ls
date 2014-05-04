@@ -3,6 +3,6 @@ require! {
 }
 
 export {
-	output: 'api.html'
+	output: 'api'
 	stylesheet: fs.readFileSync "#__dirname/stylesheet.css"
 }

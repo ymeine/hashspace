@@ -60,7 +60,8 @@ hr {
 			# template - Statement
 		</h3>
 <p>
-	<code># template name(parameters)</code> ... <code># /template</code> is used to define a template.
+	<p><code># template name(parameters)</code> ... <code># /template</code> is used to define a template.sccds</p>
+		
 </p>
 <p>
 	<p>
@@ -91,9 +92,6 @@ var instance = hello("World");
 			template.render(DOMElementId) - Core
 		</h3>
 <p>
-	Renders a template instance into the DOM element corresponding to the given id.
-</p>
-<p>
 	
 </p>
 	<p>
@@ -112,9 +110,6 @@ hello("World").render("output");
 		<h3 id="_-export-template-name">
 			# export template name - Statement
 		</h3>
-<p>
-	Exports a template in the current module.
-</p>
 <p>
 	<p>
 			The export feature is something provided by the CommonJS implementation on which hashspace relies.
@@ -140,9 +135,6 @@ hello("World").render("output");
 		<h3 id="__subtemplatereference-__">
 			<#subTemplateReference /> - Statement
 		</h3>
-<p>
-	Instantiates a template and outputs it at the place of the statement.
-</p>
 <p>
 	<p>
 			Full syntax looks like this: <code>&lt;#subTemplateReference param1="param1Value param2="param2Value"/&gt;</code> or <code>&lt;#subTemplateReference param1="param1Value param2="param2Value"&gt; ... &lt;/#subTemplateReference&gt;</code>.
@@ -195,9 +187,6 @@ example(context);
 			Component - Statement
 		</h3>
 <p>
-	A component is a template associated to a controller.
-</p>
-<p>
 	<p>
 			Syntax: <code># template name using ref:Class</code>
 		</p>
@@ -240,9 +229,6 @@ example({text: "Instantiated with API"});
 		<h3 id="controller">
 			Controller - Core
 		</h3>
-<p>
-	A controller is a class with specificities used by templates.
-</p>
 <p>
 	<p>
 			Controllers are aimed to be used together with templates.
@@ -300,9 +286,6 @@ var Controller = klass({
 <p>
 	
 </p>
-<p>
-	
-</p>
 	<p>
 		<strong><em>Example:</em></strong>
 		<pre class="hashspace"><code>
@@ -315,9 +298,6 @@ var Controller = klass({
 		<h3 id="template">
 			template - Type
 		</h3>
-<p>
-	
-</p>
 <p>
 	<p>
 			Attributes with type <code>template</code> expect to receive a template source as a value, therefore a string. The latter will be automatically compiled, and then one will be able to use the attribute to reference the generated template - as any other reference to a template.
@@ -376,12 +356,6 @@ var Controller = klass({
 		<h3 id="event-handlers">
 			Event handlers - Expression
 		</h3>
-<p>
-	You can use function expressions inside DOM elements' event handlers definitions.
-</p>
-<p>
-	This means that instead of giving a piece of JavaScript code to be executed in the global scope, you can use the standard call mechanisms, in the scope of the current module (file).
-</p>
 	<p>
 		<strong><em>Example:</em></strong>
 		<pre class="hashspace"><code>
@@ -396,9 +370,6 @@ var Controller = klass({
 		</h3>
 <p>
 	You can conditionally execute parts of the template using either <code>{if}/{else if}/{else}</code> statements, or using a ternary expression.
-</p>
-<p>
-	
 </p>
 	<p>
 		<strong><em>Example:</em></strong>
@@ -446,9 +417,6 @@ var Controller = klass({
 		<h3 id="array-update">
 			Array update - Core
 		</h3>
-<p>
-	Standard Array methods trigger the data-binding mechanisms.
-</p>
 <p>
 	<p>
 		The following standard methods of Array's prototype have been overridden for this purpose: <code>splice</code>, <code>push</code>, <code>pop</code>, <code>shift</code>, <code>unshift</code>, <code>reverse</code>, <code>sort</code>.
@@ -541,9 +509,6 @@ array.splice2(2, 0, ['c', 'd']); // =&gt; ['a', 'b', 'c', 'd', 'e', 'f']
 			Log - Core
 		</h3>
 <p>
-	A logging utility.
-</p>
-<p>
 	<p>How does logging works?</p>
 		
 		<p>
@@ -625,9 +590,6 @@ log("Here is my first log.")
 		<h3 id="log_addlogger_handler_">
 			log.addLogger(handler) - Core
 		</h3>
-<p>
-	Adds a logger to the logging utility.
-</p>
 <p>
 	The <code>handler</code> is a function receiving the log entry.
 </p>
@@ -790,9 +752,6 @@ log("message");
 			{let} - Statement
 		</h3>
 <p>
-	Creates local variables in the current scope. Multiple variables can be declared, and they can be initialized too.
-</p>
-<p>
 	The scope is associated to a container block, and the latter can be:
 		
 		<ul>
@@ -835,9 +794,6 @@ log("message");
 			inputs - HTML
 		</h3>
 <p>
-	Input with value synchronization.
-</p>
-<p>
 	<p>
 			You can define input elements as you would do in pure HTML.
 		</p>
@@ -867,9 +823,6 @@ log("message");
 		<h3 id="radio-input">
 			radio input - HTML
 		</h3>
-<p>
-	Define radio button inputs, with automatic grouping.
-</p>
 <p>
 	<p>
 			Radio buttons are special since they behave as a group of values where only one is selected at a time.
