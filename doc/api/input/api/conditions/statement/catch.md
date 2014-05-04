@@ -1,1 +1,0 @@
-You can conditionally execute parts of the template using either `{if}/{else if}/{else}` statements, or using a ternary expression.

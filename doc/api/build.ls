@@ -1,6 +1,6 @@
 require! {
 	fs
-	node-path: path
+	pathlib: path
 
 	'loader'
 }
@@ -9,19 +9,15 @@ require! {
 
 export run = (clear) ->
 	clear ?= yes
-
 	if clear => loader.clearCache!
 
-	{api, options} = require './input'
 	require! 'builder'
 
-	basepath = node-path.join __dirname, 'output', options.output
+	inputPath = pathlib.join __dirname, 'input'
+	outputPath = pathlib.join __dirname, 'output', 'api.md'
 
-	html = builder.apiToHTML api, options.stylesheet
-	markdown = builder.apiToMarkdown api
-
-	fs.writeFileSync "#basepath.html", html
-	fs.writeFileSync "#basepath.md", markdown
+	output = builder.toMarkdown inputPath
+	fs.writeFileSync outputPath, output
 
 	console.log 'Build done with success'
 

@@ -1,0 +1,5 @@
+{
+	"title": "{let} - Statement",
+
+	"catchPhrase": "Creates local variables in the current scope. Multiple variables can be declared, and they can be initialized too."
+}

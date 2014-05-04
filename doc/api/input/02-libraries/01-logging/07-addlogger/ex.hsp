@@ -1,0 +1,6 @@
+var log = require("hsp/rt/log");
+
+log.addLogger(function(entry) {
+	console.log(entry)
+	return false;
+});

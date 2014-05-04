@@ -1,5 +1,0 @@
-# template hello(who)
-	Hello {who}!
-# /template
-
-var instance = hello("World");

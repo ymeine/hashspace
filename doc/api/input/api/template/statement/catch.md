@@ -1,1 +1,0 @@
-`# template name(parameters)` ... `# /template` is used to define a template.
