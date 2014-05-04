@@ -1,0 +1,1 @@
+The `handler` is a function receiving the log entry.

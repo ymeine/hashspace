@@ -1,0 +1,1 @@
+Use the `{foreach value in array}` or `{foreach index, value in array}` expression to loop over an array.

@@ -1,0 +1,7 @@
+Syntax: `# template name using ref:Class`
+
+The difference with other templates is that it doesn't declare input arguments, but rather a class to use as controller, and a name to reference the latter's instance when the template itself is instantiated.
+
+When the template is instantiated, a new instance of its controller is created too and bound to the given variable name which is available in the scope of the template. When instantiating its controller, the template calls its `init` method after all its internal processing (like handling the input parameters, creating the associated attributes, etc).
+
+Even though the template doesn't declare its list of input arguments, in fact it takes `a single argument` which is an object whose properties must correspond to the attributes defined in the controller's class. Note that if you instantiate the template using the subtemplate statement, this object is automatically built from the specified attributes.
