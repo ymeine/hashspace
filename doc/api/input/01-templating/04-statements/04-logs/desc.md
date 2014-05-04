@@ -1,23 +1,13 @@
-As for other statements, its parameters are watched, so that a new entry will be issued anytime one of these parameters changes.
+This statement is an inline statement.
 
-Apart form that, the log statement relies on the available logging methods. It will forward all the given parameters, and add its own metadata with the following values:
+As for other statements, its parameters are observed, so that a new log entry will be issued anytime one of these parameters changes.
 
-* `type`:
+To know more about logging, please refer to the dedicated section.
 
-  `"debug"`
+The log statement relies on the available logging methods. It will forward all the given parameters, and add its own metadata with the following values:
 
-* `file`:
-
-  the file name in which the statement is used
-
-* `dir`:
-
-  the path of the directory in which the file is
-
-* `line`:
-
-  the line number in which the statement appears in the file
-
-* `column`:
-
-  the column number in which the statement appears on the line
+* `type`: `"debug"`
+* `file`: the file name in which the statement is used
+* `dir`: the path of the directory in which the file is
+* `line`: the line number in which the statement appears in the file
+* `column`: the column number in which the statement appears on the line

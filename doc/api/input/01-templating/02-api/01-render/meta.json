@@ -1,5 +1,5 @@
 {
-	"title": "template.render(DOMElementId) - Core",
+	"title": "template.render(DOMElementId)",
 
 	"catchPhrase": "Renders a template instance into the DOM element corresponding to the given id."
 }

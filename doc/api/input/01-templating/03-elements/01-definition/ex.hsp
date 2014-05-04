@@ -1,0 +1,7 @@
+<div id="{myid}">
+	{if displayed}
+		<div>
+			Some text with variable content: {content}
+		</div>
+	{/if}
+</div>

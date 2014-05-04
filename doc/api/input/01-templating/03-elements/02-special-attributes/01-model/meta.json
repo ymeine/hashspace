@@ -1,5 +1,5 @@
 {
-	"title": "inputs - HTML",
+	"title": "HTML input elements",
 
-	"catchPhrase": "Input with value synchronization."
+	"catchPhrase": "Input elements are treated specifically to handle UI data-binding."
 }

@@ -1,0 +1,5 @@
+{
+	"title": "{expression}",
+
+	"catchPhrase": "All `{...}` occurences which don't correspond to a statement are expressions."
+}

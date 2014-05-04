@@ -1,9 +1,11 @@
-Radio buttons are special since they behave as a group of values where only one is selected at a time.
+Radio buttons are of a specific kind of inputs, since they behave as a group of values where only one is selected at a time.
 
-Indeed, a radio button alone holds both a selected state and a value.
+The relevant value is thus not anymore attached to one single input, but to a group of inputs. Each of those inputs will have a specific instance of the value, and when it gets selected, this will become the value of the group.
 
-A group of radio buttons on its hand will have a single value, corresponding to its currently selected one. But they all aim at setting the __same property of the same model__.
+To handle easy binding from many static values to one value, a new attribute has been introduced, called `model`.
 
-That's why we introduced an additional attribute, called `model`, which will contain the expression referencing the property of the model to bind. This property will receive the value specified in the attribute `value` of the currently selected radio button.
+Put the reference of the model to bind in `model` (using an expression), and put the specific value attached to an input in `value`.
 
-Since a group of radio buttons is naturally identified by the fact that they all reference the same property of the model, groups will automatically be built regarding the value of the `model` attribute.
+When a button gets selected, the reference in `model` is updated to the `value` of this button.
+
+Doing it this ways also allows the engine to automatically detect and create button groups: all buttons whose bound model is the same belong to the same group.
