@@ -16,7 +16,7 @@ function contains(array, element) {
 }
 
 function forEach(container, cb) {
-	for (index = 0, length = container.length; index < length; index++) {
+	for (var index = 0, length = container.length; index < length; index++) {
 		cb(container[index], index, container);
 	}
 }
@@ -30,7 +30,7 @@ function forOwn(container, cb) {
 }
 
 function mixin(dest, src) {
-	return forOwn(src, function (value, key) {
+	return forOwn(src, function(value, key) {
 		dest[key] = value;
 	});
 }
@@ -43,7 +43,7 @@ function walk(dirpath, cb) {
 	var dirnames = [];
 	var filenames = [];
 
-	forEach(fs.readdirSync(dirpath), function (node) {
+	forEach(fs.readdirSync(dirpath), function(node) {
 		var stat = fs.statSync(pathlib.join(dirpath, node));
 		var category = stat.isDirectory() ? dirnames : filenames;
 		category.push(node);
@@ -55,7 +55,7 @@ function walk(dirpath, cb) {
 		filenames: filenames
 	});
 
-	forEach(dirnames, function (directory) {
+	forEach(dirnames, function(directory) {
 		walk(pathlib.join(dirpath, directory), cb);
 	});
 }
@@ -66,7 +66,7 @@ function Section(spec) {
 	mixin(this, spec);
 }
 
-Section.prototype.toMarkdown = function () {
+Section.prototype.toMarkdown = function toMarkdown() {
 	var title = this.title;
 	var catchPhrase = this.catchPhrase;
 	var description = this.description;
@@ -93,7 +93,7 @@ Section.prototype.toMarkdown = function () {
 function getSections(root) {
 	var sections = [];
 
-	walk(root, function (spec) {
+	walk(root, function(spec) {
 		var dirpath = spec.dirpath;
 		var dirnames = spec.dirnames;
 		var filenames = spec.filenames;
@@ -111,7 +111,7 @@ function getSections(root) {
 				var sample = read(pathlib.join(dirpath, 'sample.hsp'));
 			}
 
-			return sections.push(new Section({
+			sections.push(new Section({
 				title: meta.title,
 				catchPhrase: meta.catchPhrase,
 				description: description,
@@ -128,7 +128,7 @@ function getSections(root) {
 
 function toMarkdown(root) {
 	var parts = [];
-	forEach(getSections(root), function (section) {
+	forEach(getSections(root), function(section) {
 		parts.push(section.toMarkdown());
 	});
 	return parts.join('\n\n');

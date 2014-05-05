@@ -7,7 +7,7 @@ var builder = require('./builder');
 
 function run() {
 	var inputPath = pathlib.join(__dirname, 'input');
-	var outputPath = pathlib.join(__dirname, 'output', 'api.md');
+	var outputPath = pathlib.join(__dirname, 'api.md');
 	var output = builder.toMarkdown(inputPath);
 
 	fs.writeFileSync(outputPath, output);
