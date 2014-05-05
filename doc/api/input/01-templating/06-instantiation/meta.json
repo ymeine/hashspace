@@ -1,5 +1,5 @@
 {
-	"title": "<#subTemplateReference /> - Statement",
+	"title": "<#subTemplateReference />",
 
-	"catchPhrase": "Instantiates a template and outputs it at the place of the statement."
+	"catchPhrase": "Instantiates a template like an HTML element."
 }

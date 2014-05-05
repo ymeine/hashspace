@@ -1,5 +1,5 @@
 {
 	"title": "HTML input elements",
 
-	"catchPhrase": "Input elements are treated specifically to handle UI data-binding."
+	"catchPhrase": "Input elements have special consideration by the engine to handle GUI data-binding."
 }

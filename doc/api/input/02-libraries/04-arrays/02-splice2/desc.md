@@ -1,1 +1,1 @@
-This method triggers the data-binding mechanisms.
+This method implements observing mechanisms.

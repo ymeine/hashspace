@@ -1,1 +1,1 @@
-{'Conditional text': !context.hide}
+{context.text(): !context.hide}

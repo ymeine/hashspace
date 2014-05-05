@@ -1,1 +1,1 @@
-{"Hello", who, {formal ? '.' : "!"}}
+{"Hello", name, {formal ? '.' : "!"}}

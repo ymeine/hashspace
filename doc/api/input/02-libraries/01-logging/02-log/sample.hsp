@@ -1,4 +1,4 @@
-var log=require("hsp/rt/log");
+var log = require("hsp/rt/log");
 
 # template test(logs)
 	<ul>

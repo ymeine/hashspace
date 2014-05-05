@@ -1,1 +1,1 @@
-{reference.property}
+{context.cb(context.param)}

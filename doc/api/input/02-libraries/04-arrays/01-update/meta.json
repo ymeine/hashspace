@@ -1,5 +1,5 @@
 {
-	"title": "Array update - Core",
+	"title": "Native array update",
 
-	"catchPhrase": "Standard Array methods trigger the data-binding mechanisms."
+	"catchPhrase": "`Array` methods have been reimplemented to make native arrays observable."
 }

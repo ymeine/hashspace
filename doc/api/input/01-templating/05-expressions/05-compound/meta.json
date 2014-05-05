@@ -1,5 +1,5 @@
 {
-	"title": "{expr1, expr2, expr3} - Expression",
+	"title": "{expr1, expr2, expr3}",
 
-	"catchPhrase": "Several expressions into one."
+	"catchPhrase": "Compound expressions."
 }

@@ -1,0 +1,7 @@
+# template example()
+	<span onclick="{handler()}"></span>
+# /template
+
+function handler() {
+	// ...
+}

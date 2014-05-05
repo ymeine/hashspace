@@ -1,5 +1,5 @@
 {
-	"title": "Event handlers - Expression",
+	"title": "Event handlers",
 
-	"catchPhrase": "You can use function expressions inside DOM elements' event handlers definitions."
+	"catchPhrase": "Event handler attributes of HTML elements accept function expressions."
 }

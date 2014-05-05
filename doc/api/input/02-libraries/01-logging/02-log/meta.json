@@ -1,5 +1,5 @@
 {
-	"title": "log(object... [, metaData)] - Core",
+	"title": "log(object... [, metaData)]",
 
-	"catchPhrase": "Logs data with `debug` level."
+	"catchPhrase": "Creates and pushes a log entry."
 }

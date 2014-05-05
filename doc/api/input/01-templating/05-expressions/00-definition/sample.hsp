@@ -1,0 +1,27 @@
+# template example(context)
+	<button  onclick="{change(context, normal)}">Normal</button>
+	<button  onclick="{change(context, reversed)}">Reversed</button>
+
+	<input type="text" value="{context.param}" />
+	{context.echo(context, context.param)}
+# /template
+
+context = {
+	echo: normal,
+	param: "hello",
+	value: null
+}
+
+function normal(context, param) {
+	return param;
+}
+
+function reversed(context, param) {
+	return param.split("").reverse().join("");
+}
+
+function change(context, cb) {
+	context.echo = cb;
+}
+
+example(context).render("output")
