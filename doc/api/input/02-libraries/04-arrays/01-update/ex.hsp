@@ -15,9 +15,9 @@ var array = [];
 
 # template example(array, actions)
 	{foreach action in actions}
-		— <a onclick="{action.method()}">{action.label}</a>&nbsp;
+		- <a onclick="{action.method()}">{action.label}</a>&nbsp;
 	{/foreach}
-	—
+	-
 
 	<br/>
 

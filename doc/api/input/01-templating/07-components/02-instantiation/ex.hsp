@@ -1,0 +1,10 @@
+# template example()
+	<#componentRef attr1="value1">
+		... template content ...
+	</#componentRef>
+
+	<#componentRef attr1="value1">
+		<@attr3> ... </@attr3>
+		<@attr2> ... </@attr2>
+	</#componentRef>
+# /template

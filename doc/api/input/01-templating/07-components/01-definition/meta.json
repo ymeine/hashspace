@@ -1,5 +1,5 @@
 {
-	"title": "# template using controller:Controller",
+	"title": "# template using controllerInstance:ControllerClass",
 
-	"catchPhrase": "Defines a component, which means a template tied to a specific _class_ to be used as controller."
+	"catchPhrase": "Defines a component, that is a template tied to a specific _class_ to be used as controller."
 }

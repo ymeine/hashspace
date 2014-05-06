@@ -1,0 +1,5 @@
+{
+	"title": "$dispose",
+
+	"catchPhrase": "A user method to clean properly a _destroyed_ instance."
+}

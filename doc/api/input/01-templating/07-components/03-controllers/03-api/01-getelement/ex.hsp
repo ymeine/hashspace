@@ -1,0 +1,14 @@
+var Controller = klass({
+	$refresh: function() {
+		console.log(this.$getElement(0)); // div
+		console.log(this.$getElement(1)); // hr
+	}
+});
+
+# template example using controller:Controller
+	<div>
+		<span></span>
+	</div>
+	Ignored text
+	<hr />
+# /template

@@ -1,0 +1,7 @@
+var Controller = klass({
+	attributes: {
+		text: {type: "string", defaultValue: "", binding: "none"}
+	},
+	$init: function() {},
+	$dispose: function() {}
+});

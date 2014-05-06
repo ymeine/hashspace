@@ -1,0 +1,5 @@
+{
+	"title": "<#componentReference attr1=\"value1\"> ... </#componentReference>",
+
+	"catchPhrase": "Instantiates a component, more or less like a template can be instantiated."
+}

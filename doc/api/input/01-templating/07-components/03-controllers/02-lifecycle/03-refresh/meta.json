@@ -1,0 +1,5 @@
+{
+	"title": "$refresh",
+
+	"catchPhrase": "A user method called after a component has been refreshed."
+}

@@ -1,0 +1,5 @@
+{
+	"title": "Attribute type: callback",
+
+	"catchPhrase": "Attributes of type callback have strict restrictions, and they are used to define new event handlers on the component."
+}

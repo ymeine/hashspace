@@ -1,0 +1,5 @@
+var myClass = klass({
+	$constructor: function() {
+		// this....
+	}
+});

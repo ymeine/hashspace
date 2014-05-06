@@ -1,10 +1,22 @@
-A component is identified by the presence of the `using` keyword. The latter defines which class to use to build an instance of the controller, and under which name it will be referred to inside the template, like this: `using instanceReference:ClassReference`.
+__Definition__:
 
+A template is considered as a component as soon as it uses the `using` keyword. The latter defines which class to use to build an instance of the controller, and under which name it will be referred to inside the template.
 
-Syntax: `# template name using instanceReference:ClassReference`
+Controllers are just a specific kind of class whose features are focused on interaction with templates. More information on what controller really are and how they work are available in a dedicated section in this documentation.
 
-The difference with other templates is that it doesn't declare input arguments, but rather a class to use to build controller instances, and a name to reference the latter inside the template.
+__Syntax__:
 
-When the template is instantiated, a new instance of its controller is created too and bound to the given variable name which is available in the scope of the template. When instantiating its controller, the template calls its `init` method after all its internal processing has completed.
+Having a controller changes a little how the template interface works.
 
-Even though the template doesn't declare its list of input arguments, in fact it implicitly takes `a single argument` which is an object whose properties must correspond to the attributes defined in the controller's class. Note that if you instantiate the template using the subtemplate statement, this object is automatically built from the specified tag attributes.
+First, the input parameters passed to the template are directly intended to be used to, and only to, instantiate the controller and more specifically initialize its attributes.
+
+For that, the component actually expects one single argument, which is an object whose properties' names must match the name of the attributes defined in the controller. That's why the component syntax doesn't allow defining any input parameter list.
+
+__Behavior: __
+
+When the template is instantiated, a new instance of its controller is created too and bound to the given variable name, which is then available in the scope of the template. When instantiating its controller, the template calls its `$init` method after all its internal processing has finished.
+
+Instantiating a component is done like instantiating a template:
+
+* directly using the API by calling the generated function: don't forget that the only argument is a single object whose properties match the controller's attributes
+* using a special statement when used inside another template: this has already been discussed in the section about templates, but __below is another section explaining the differences there are with components__

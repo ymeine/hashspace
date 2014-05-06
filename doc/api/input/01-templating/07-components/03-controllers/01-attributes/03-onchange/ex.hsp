@@ -1,0 +1,8 @@
+var Controller = klass({
+	attributes: {
+		text: {type: "string", binding: "1-way"}
+	},
+	onTextChange: function(newValue, oldValue) {
+		// ...
+	},
+});

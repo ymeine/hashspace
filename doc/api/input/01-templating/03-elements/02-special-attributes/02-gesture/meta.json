@@ -1,5 +1,5 @@
 {
-	"title": "",
+	"title": "Gestures event handlers attributes",
 
-	"catchPhrase": ""
+	"catchPhrase": "The engine adds a bunch of attributes to HTML elements to add support for gesture events."
 }

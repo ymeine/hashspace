@@ -1,0 +1,9 @@
+var Controller = klass({
+	attributes: {
+		"integer": {type: "int"},
+		"floatnb": {type: "float"},
+		"bool": {type: "boolean"},
+		"str": {type: "string"},
+		"obj": {type: "object"},
+	}
+});

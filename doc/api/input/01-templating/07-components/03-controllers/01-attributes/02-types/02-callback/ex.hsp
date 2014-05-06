@@ -1,0 +1,21 @@
+var Controller = klass({
+	attributes: {
+		onupdate: {type: "callback"}
+	},
+
+	update: function() {
+		this.onupdate("updated!");
+	}
+});
+
+# template component using controller:Controller
+	<div onclick="{controller.update()}">Update</div>
+# /template
+
+function handler(event) {
+	// event.type == "update"
+}
+
+# template example()
+	<#component onupdate="{handler(event)}" />
+# /template

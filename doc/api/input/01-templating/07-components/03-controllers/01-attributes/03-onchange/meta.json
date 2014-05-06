@@ -1,0 +1,5 @@
+{
+	"title": "on<Attribute>Change(newValue, oldValue)",
+
+	"catchPhrase": "Use methods whose name follow a specific pattern, used to react to change events triggered by attributes."
+}

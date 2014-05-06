@@ -1,5 +1,5 @@
 {
-	"title": "",
+	"title": "$constructor",
 
-	"catchPhrase": ""
+	"catchPhrase": "User method called when building a new instance of the class."
 }

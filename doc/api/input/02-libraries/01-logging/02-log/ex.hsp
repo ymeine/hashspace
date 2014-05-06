@@ -1,6 +1,5 @@
 var log = require("hsp/rt/log");
 
 log("The message", {
-	type: "debug",
-	message: "default"
+	type: "debug"
 });

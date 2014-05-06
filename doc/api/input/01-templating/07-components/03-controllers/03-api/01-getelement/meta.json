@@ -1,0 +1,5 @@
+{
+	"title": "$getElement(index)",
+
+	"catchPhrase": "A method provided by controllers to retrieve an HTML element in the component."
+}

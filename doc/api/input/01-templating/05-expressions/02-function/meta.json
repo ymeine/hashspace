@@ -1,5 +1,5 @@
 {
-	"title": "",
+	"title": "{context.func(param1)}",
 
-	"catchPhrase": ""
+	"catchPhrase": "A function expression is an expression executing a function call."
 }

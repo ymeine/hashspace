@@ -1,0 +1,3 @@
+var log = require("hsp/rt/log");
+
+log.warning("Warning message");

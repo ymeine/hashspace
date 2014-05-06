@@ -1,0 +1,34 @@
+var Controller = klass({
+	attributes: {
+		"header": {type: "template"},
+		"body": {type: "template", defaultContent:true},
+		"footer": {type: "template"}
+	}
+});
+
+
+
+# template panel using controller:Controller
+	{if controller.header}<#controller.header/>{/if}
+	<br />
+	{if controller.body}<#controller.body/>{/if}
+	<br />
+	{if controller.footer}<#controller.footer/>{/if}
+# /template
+
+# template body(content)
+	Body: {content}
+# /template
+
+# template example()
+	<#panel header="Simple attributes" body="{body('First body content')}" />
+	<hr />
+	<#panel header="Mix of attributes and text content">
+		Second body content
+	</#panel>
+	<hr />
+	<#panel header="Mix of attributes and sub-attributes">
+		<@footer>Footer defined before body but displayed after</@footer>
+		<@body>Third body content</@body>
+	</#panel>
+# /template

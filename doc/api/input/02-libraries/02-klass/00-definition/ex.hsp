@@ -1,0 +1,11 @@
+var klass = require("hsp/klass");
+
+var myClass = klass({
+	$constructor: {
+		// ...
+	},
+	method1: function() {
+		// ...
+	}
+	// ...
+});

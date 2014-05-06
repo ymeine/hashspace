@@ -1,7 +1,7 @@
 # template example()
-	<span onclick="{handler()}"></span>
+	<span onclick="{handler(event)}">Click me</span>
 # /template
 
-function handler() {
+function handler(event) {
 	// ...
 }

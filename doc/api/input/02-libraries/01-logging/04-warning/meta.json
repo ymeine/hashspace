@@ -1,5 +1,5 @@
 {
-	"title": "",
+	"title": "log.warning(object... [, metaData)])",
 
-	"catchPhrase": ""
+	"catchPhrase": "Equivalent to `log` but sets the `type` property to `\"warning\"`."
 }

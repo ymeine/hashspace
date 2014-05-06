@@ -1,0 +1,8 @@
+var Parent = klass({
+	// ...
+});
+
+var Child = klass({
+	$extends: Parent
+	// ...
+});
