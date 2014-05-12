@@ -15,7 +15,7 @@ This content can have 2 forms, which cannot be mixed:
 * a classical template content, with text, elements, statements, etc.
 * a set of sub-attribute elements, each containing template content (as for previous point)
 
-Due to the fact that the content is actually template content, the only attributes that it can define are those defined in the controller with type `template`. See below for more information on the different types of attribute, including `template`.
+Due to the fact that the content is actually template content, the only attributes that it can relate to are those defined in the controller with type `template`. See below for more information about the different types of attributes, including `template`.
 
 In the second form, sub-attribute elements specify the name of the attribute they define, with the following syntax: `<@attrName> ... </@attrname>`.
 

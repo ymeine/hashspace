@@ -1,0 +1,88 @@
+# template example(context)
+	{let tpl = "Variable in template environment"}
+
+	<div>
+		{let htmlBlock = "Variable in HTML block environment"}
+
+		In HTML block:
+		<ul>
+			<li>{tpl}</li>
+			<li>{htmlBlock}</li>
+		</ul>
+	</div>
+
+	<hr />
+
+	Set <code>condition</code> to <code>true</code>: <input type="checkbox" model="{context.condition}" /> <br />
+	Set <code>condition2</code> to <code>true</code>: <input type="checkbox" model="{context.condition2}" /> <br />
+
+	{if context.condition}
+		{let if_ = "Variable in if environment"}
+
+		In if:
+		<ul>
+			<li>{tpl}</li>
+			<li>{htmlBlock}</li>
+			<li>{if_}</li>
+		</ul>
+	{else if context.condition2}
+		{let elseIf = "Variable in an elseif environment"}
+
+		In else if:
+		<ul>
+			<li>{tpl}</li>
+			<li>{htmlBlock}</li>
+			<li>{if_}</li>
+			<li>{elseIf}</li>
+		</ul>
+	{else}
+		{let else_= "Variable in else environment"}
+
+		In else:
+		<ul>
+			<li>{tpl}</li>
+			<li>{htmlBlock}</li>
+			<li>{if_}</li>
+			<li>{elseIf}</li>
+			<li>{else_}</li>
+		</ul>
+	{/if}
+
+	<hr />
+
+	{foreach value in context.container}
+		{let foreach_ = "Variable in foreach environment"}
+
+		In foreach:
+		<ul>
+			<li>{tpl}</li>
+			<li>{htmlBlock}</li>
+			<li>{if_}</li>
+			<li>{elseIf}</li>
+			<li>{else_}</li>
+			<li>{foreach_}</li>
+		</ul>
+	{/foreach}
+
+	<hr />
+
+	In template:
+	<ul>
+		<li>{tpl}</li>
+		<li>{htmlBlock}</li>
+		<li>{if_}</li>
+		<li>{elseIf}</li>
+		<li>{else_}</li>
+		<li>{foreach_}</li>
+	</ul>
+# /template
+
+
+
+var context = {
+	condition: false,
+	condition2: false,
+	container: [0]
+};
+
+example(context).render("output");

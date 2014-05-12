@@ -1,6 +1,15 @@
-Attributes of type `callback` behave like event handlers, and expect the same content as them: usually function expressions. From a user point of view, there is thus no change compared to a standard `onclick` for instance.
+Attributes of type `callback` behave like event handlers, and expect the same content as them: usually function expressions. From a user point of view, there is thus no change compared to a standard `onclick` handler for instance.
 
-To trigger such an event and execute the associated handler, call the attribute like a standard function, passing the event object (for reminder: this object is accessible under the name `event` in event handlers definition). This forces to use an object as argument, with a single restriction: you can't define a property with name `type`. The latter is automatically fulfilled by the engine, with the name of the event, that is the name of the event handler minus the prefix `on`.
+To trigger such an event and execute the associated handler, call the attribute like a standard function, optionally passing the event object (for reminder: this is the same object which is then accessible under the name `event` in event handlers attributes).
+
+In the end, the engine ensures that an event object with a property `type` is sent:
+
+* if no argument is specified, the object is simply created, with this property
+* if the first argument is specified, it must:
+	* explicitly be an object
+	* not define a property named `type`, to avoid accidental overriding
+
+This `type` property is then filled with the name of the event, that is the name of the event handler minus the prefix `on`.
 
 __Naming convention:__
 

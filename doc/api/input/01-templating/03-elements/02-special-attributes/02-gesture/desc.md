@@ -1,4 +1,4 @@
-_Gesture_ attributes are like other attributes expecting event handlers (`onclick`, etc.), so you can use function expressions with it.
+_Gesture_ attributes are like other attributes expecting event handlers (e.g. `onclick`, etc.), so you can use function expressions with it.
 
 Currently, here are the attributes for supported events:
 

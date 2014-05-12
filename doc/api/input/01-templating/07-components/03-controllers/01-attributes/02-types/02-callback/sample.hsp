@@ -1,3 +1,5 @@
+var klass = require("hsp/klass");
+
 var Controller = klass({
 	attributes: {
 		onupdate: {type: "callback"}
@@ -13,9 +15,13 @@ var Controller = klass({
 # /template
 
 function handler(event) {
-	// event.type == "update"
+	console.log(event);
 }
 
 # template example()
 	<#component onupdate="{handler(event)}" />
 # /template
+
+
+
+example().render("output");

@@ -1,19 +1,19 @@
 # template example()
-	{let templateLevel}
+	{let tpl = "Variable in template environment"}
 
 	<div>
-		{let htmlLevel1 = "htmlLevel1Value", htmlLevel2}
+		{let htmlBlock = "Variable in HTML block environment"}
 	</div>
 
 	{if condition}
-		{let ifLevel}
+		{let if_ = "Variable in if environment"}
 	{else if condition2}
-		{let elseIfLevel}
+		{let elseIf = "Variable in an elseif environment"}
 	{else}
-		{let elseLevel}
+		{let else_= "Variable in else environment"}
 	{/if}
 
 	{foreach value in container}
-		{let foreachLevel}
+		{let foreach_ = "Variable in foreach environment"}
 	{/foreach}
 # /template

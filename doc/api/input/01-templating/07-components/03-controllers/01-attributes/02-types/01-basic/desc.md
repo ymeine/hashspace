@@ -2,7 +2,7 @@ Those types are:
 
 * `int`: the input value is converted using [`parseInt`](http://devdocs.io/javascript/global_objects/parseint), with a radix of 10
 * `float`: the input value is converted using [`parseFloat`](http://devdocs.io/javascript/global_objects/parsefloat)
-* `boolean`: evaluates to `true` is the input value is strictly equal to one of `true`, `1`, `'1'` or `'true'`. Is `false` otherwise
+* `boolean`: evaluates to `true` if the input value is strictly equal to one of: `true`, `1`, `'1'` or `'true'`. Evaluates to `false` otherwise.
 * `string`: the input value is converted using the concatenation with an empty string
 * `object`: _no processing of the input value_
 

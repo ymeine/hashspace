@@ -1,5 +1,5 @@
 {
-	"title": "HTML input elements: model attribute",
+	"title": "HTML input elements (and the model attribute)",
 
-	"catchPhrase": "Input elements have special consideration by the engine to handle GUI data-binding."
+	"catchPhrase": "Input elements have special consideration by the engine to handle UI data binding."
 }

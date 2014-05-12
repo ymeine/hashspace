@@ -1,0 +1,39 @@
+var klass = require("hsp/klass");
+
+
+
+var Controller = klass({
+	attributes: {
+		none: {type: "string", defaultValue: "", binding: "none"},
+		outIn: {type: "string", defaultValue: "", binding: "1-way"},
+		both: {type: "string", defaultValue: "", binding: "2-way"}
+	}
+});
+
+
+
+# template main using controller:Controller
+	None: <input type="text" model="{controller.none}" /> <br />
+	One: <input type="text" model="{controller.outIn}" /> <br />
+	Two: <input type="text" model="{controller.both}" /> <br />
+# /template
+
+# template example(context)
+	Values inside the component:
+	<p>
+	<#main none="{context.none}" outIn="{context.outIn}" both="{context.both}" />
+	</p>
+
+	<hr/>
+
+	Values outside of the component (bound to its attributes):
+	<p>
+	None: <input type="text" model="{context.none}" /> <br />
+	One: <input type="text" model="{context.outIn}" /> <br />
+	Two: <input type="text" model="{context.both}" /> <br />
+	</p>
+# /template
+
+
+
+example({}).render("output");

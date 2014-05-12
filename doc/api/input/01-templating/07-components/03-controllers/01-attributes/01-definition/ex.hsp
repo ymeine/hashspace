@@ -1,3 +1,3 @@
 attributes: {
-
+	attr: {type: "string", defaultValue: "", binding: "2-way"}
 }

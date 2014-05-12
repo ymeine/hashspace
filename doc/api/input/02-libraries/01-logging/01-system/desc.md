@@ -1,4 +1,4 @@
-Here is how logging works:
+Logging is managed at application level, which means that there is only one logging context.
 
 First, attach loggers with `log.addLogger(callback)`: they will receive the log entries when they are pushed.
 

@@ -1,5 +1,5 @@
 {
-	"title": "{let}",
+	"title": "{let reference=value}",
 
-	"catchPhrase": "Creates local variables in the current scope. Multiple variables can be declared, and they can be initialized too."
+	"catchPhrase": "Creates local variables in the current environment."
 }

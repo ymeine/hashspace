@@ -6,6 +6,6 @@ Specificities for the different types of expression are explained in dedicated s
 
 If an expression appears in a context where its output value is used, the engine parses it to detect as most as possible which are the external elements which would make this output value change. Those external elements are then observed, and once one changes the expression is evaluated again to get the possibly new value.
 
-This makes possible for entities using expressions to be refreshed when associated values change.
+This makes possible for entities using expressions to be refreshed automatically when associated values change.
 
-For now, object properties and function input parameters are both observed (this definition is recursive).
+For now, objects' properties and functions' arguments are both observed.

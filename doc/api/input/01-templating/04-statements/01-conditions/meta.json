@@ -1,5 +1,5 @@
 {
 	"title": "{if}/{else if}/{else}",
 
-	"catchPhrase": "You can conditionally execute parts of a template using either `{if}/{else if}/{else}` statements, or using a ternary expression."
+	"catchPhrase": "You can define conditional parts of a template using the `{if}/{else if}/{else}` statements."
 }

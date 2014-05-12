@@ -1,0 +1,27 @@
+# template example(context)
+	<button onclick="{changeEventHandler(context)}">Change event handler</button>
+	<br/>
+	<button onclick="{context.handler(event)}">Click me</button>
+# /template
+
+
+
+function handler1(event) {
+	console.log("This is handler 1");
+}
+
+function handler2(event) {
+	console.log("This is handler 2");
+}
+
+function changeEventHandler(context) {
+	context.handler = context.handler === handler1 ? handler2 : handler1;
+}
+
+
+
+var context = {
+	handler: handler1
+};
+
+example(context).render("output");

@@ -16,12 +16,10 @@ var Controller = klass({
 	{if controller.footer}<#controller.footer/>{/if}
 # /template
 
-# template body(content)
-	Body: {content}
-# /template
+
 
 # template example()
-	<#panel header="Simple attributes" body="{body('First body content')}" />
+	<#panel header="Simple attributes" body="First body content" />
 	<hr />
 	<#panel header="Mix of attributes and text content">
 		Second body content

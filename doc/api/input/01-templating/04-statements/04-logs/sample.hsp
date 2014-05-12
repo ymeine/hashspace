@@ -1,0 +1,14 @@
+# template example(context)
+	<button onclick="{changeValue(context)}">Change value</button>
+	{log context.property}
+# /template
+
+function changeValue(context) {
+	context.property = context.property.split("").reverse().join("");
+}
+
+var context = {
+	property: "value"
+};
+
+example(context).render("output");
