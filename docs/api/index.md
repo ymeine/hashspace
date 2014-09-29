@@ -178,7 +178,7 @@ It will forward all the given parameters, and add its own metadata with the foll
 
 ```cs
 <template example()>
-  {log scope}
+  {log $scope}
 </template>
 ```
 
@@ -361,17 +361,17 @@ In order to avoid side effects, you must pay attention in modifying and returnin
 
 ## Special HTML element attributes
 
-#### Event handlers ` onclick="{a.b.doThis(event, mydata)}"`
+#### Event handlers ` onclick="{a.b.doThis($event, mydata)}"`
 
 Event handler attributes of HTML elements accept function expressions.
 
 This means that instead of giving a piece of JavaScript code to be executed in the global environment, you can use the standard call mechanisms, in the environment of the current module (file).
 
-Event handlers have a particularity though: in your function call, you can pass the `event` object to your handler function. This `event` object is implicitly available in the context of your expression, but it is not automatically passed, so you need to explicitly pass it if you want to have it available in your function.
+Event handlers have a particularity though: in your function call, you can pass the `$event` object to your handler function. This `$event` object is implicitly available in the context of your expression, but it is not automatically passed, so you need to explicitly pass it if you want to have it available in your function.
 
 ```cs
 <template example()>
-  <span onclick="{handler(event)}">Click me</span>
+  <span onclick="{handler($event)}">Click me</span>
 </template>
 
 function handler(event) {
@@ -464,7 +464,7 @@ A the end of the life cycle, when the component is not needed anymore, the `$dip
 
 Defines the attributes of the controller, also considered as the attributes of the component.
 
-In the _klass_ definition of the controller, a specific property called `attributes` is used to define the attributes of the controller/component. It allows you to define the public API of the controller itself.
+In the _klass_ definition of the controller, a specific property called `$attributes` is used to define the attributes of the controller/component. It allows you to define the public API of the controller itself.
 
 It expects a map of attribute names (the keys) with their definitions (the values).
 
@@ -486,7 +486,7 @@ Hashspace natively supports different types of attributes:
   The basic types attributes, to be declared when defining your component class:
 
   ```json
-  attributes: {
+  $attributes: {
     "count": { type: "int", defaultValue: 0 },
     "price": { type: "float", defaultValue: 19.90 },
     "active": { type: "boolean", defaultValue: true },
@@ -505,7 +505,7 @@ Hashspace natively supports different types of attributes:
   We also support `callback` attributes. They are especially useful to be associated with you r component external events based API.
 
   ```json
-  attributes: {
+  $attributes: {
     onclick: { type: "callback" },
     onselect: { type: "callback" }
   }
@@ -541,7 +541,7 @@ Hashspace natively supports different types of attributes:
 
   ```javascript
   var MyCpt = klass({
-    attributes: {
+    $attributes: {
       header: { type: "template" },
       body: { type: "template", defaultcontent: true }
     }
@@ -604,7 +604,7 @@ _Binding_ means linking two references, so that they point to the same value whe
 __Example:__
 
 ```json
-attributes: {
+$attributes: {
   attr: {type: "string", defaultValue: "", binding: "2-way"}
 }
 ```
@@ -724,14 +724,14 @@ var Controller = klass({
 
 ---
 
-##### on&lt;Attribute&gt;Change(newValue, oldValue)
+##### $on&lt;Attribute&gt;Change(newValue, oldValue)
 
 User methods whose names follow a specific pattern, used to react to change events triggered by attributes.
 
 When a property's value changes, __and if the property is bound in at least one way__, the engine automatically calls - if defined - a method of the controller whose name is built from the name of the property:
 
 * the name of the property is taken and its first letter is upper cased, the rest is left untouched
-* the function must then be named like this: `"on" + transformedName + "Change"`
+* the function must then be named like this: `"$on" + transformedName + "Change"`
 
 Now, let's talk quickly about what is a property change. A property's value is said to have changed when the reference associated to the property has changed, nothing more. That means that all inplace transformations are not taken into account, since the property will still refer to the same object.
 
@@ -739,10 +739,10 @@ __Important note__: any property change occurring in a change handler doesn't tr
 
 ```javascript
 var Controller = klass({
-  attributes: {
+  $attributes: {
     text: {type: "string", binding: "1-way"}
   },
-  onTextChange: function(newValue, oldValue) {
+  $onTextChange: function(newValue, oldValue) {
     // ...
   },
 });
