@@ -2,7 +2,7 @@
 var klass = require("hsp/klass");
 
 var TabCtrl = klass({
-    attributes: {
+    $attributes: {
         label: { type: "template" },
         body: { type: "template", defaultContent: true }
     },
@@ -16,7 +16,7 @@ var TabCtrl = klass({
 });
 
 var TabBarCtrl = klass({
-    attributes: {
+    $attributes: {
         "class": { type: "string" },
         "selection": { type: "int", defaultValue: 0, binding: "2-way" }
     },

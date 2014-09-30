@@ -3,7 +3,7 @@ var klass=require("hsp/klass");
 
 // simple option controller
 var OptionCtrl = klass({
-  attributes: {
+  $attributes: {
     "value":{type:"string",binding:"1-way"},
     "label":{type:"template"}
   },
@@ -15,7 +15,7 @@ var OptionCtrl = klass({
 
 // simple list controller
 var ListCtrl = klass({
-  attributes: {
+  $attributes: {
     "class":{type:"string",binding:"1-way"},
     "onselect":{type:"callback"},
     "head":{type:"template"}
@@ -68,12 +68,12 @@ var ListCtrl = klass({
 <template test(d)>
   Click on an item to select it:
 
-  <#list head="Static list" class="listcpt" onselect="{showSelection(event.value)}">
+  <#list head="Static list" class="listcpt" onselect="{showSelection($event.value)}">
     <@option value="A" label="First {d.itemName}"/>
     <@option value="B">Second {d.itemName}</@option>
   </#list>
 
-  <#list class="listcpt" onselect="{showSelection(event.value)}">
+  <#list class="listcpt" onselect="{showSelection($event.value)}">
     <@head>
       Dynamic list:
       <a href="javascript:void(0)" onclick="{empty()}">Empty</a> -

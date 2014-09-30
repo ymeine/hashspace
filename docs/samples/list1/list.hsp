@@ -3,7 +3,7 @@ var klass=require("hsp/klass");
 
 // simple list controller
 var ListController = klass({
-  attributes: {
+  $attributes: {
     "class":{type:"string",binding:"1-way"},
     "onclick":{type:"callback"},
     "head":{type:"template"}
