@@ -4,7 +4,7 @@
 var _ = require("underscore");
 
 exports.create = function (tree) {
-    var isTree = tree && tree.type === "template" && tree.name && tree.content;
+    var isTree = tree && tree.type === "template" && tree.name && tree.$content;
 
     // Prototype of any element that is contained in the tree
     var contentElement = {
@@ -209,12 +209,12 @@ exports.create = function (tree) {
                 element : {
                     writable : false,
                     configurable : false,
-                    value : this.element.content[position]
+                    value : this.element.$content[position]
                 },
                 path : {
                     writable : false,
                     configurable : false,
-                    value : this.path + ".content[" + position + "]"
+                    value : this.path + ".$content[" + position + "]"
                 }
             });
         },
@@ -231,12 +231,12 @@ exports.create = function (tree) {
                 element : {
                     writable : false,
                     configurable : false,
-                    value : this.element.content[j][k]
+                    value : this.element.$content[j][k]
                 },
                 path : {
                     writable : false,
                     configurable : false,
-                    value : this.path + ".content[" + j + "][" + k + "]"
+                    value : this.path + ".$content[" + j + "][" + k + "]"
                 }
             });
         },
@@ -314,9 +314,9 @@ exports.create = function (tree) {
             }
 
             if (_.isNumber(howMany)) {
-                return tree.content.length === howMany;
+                return tree.$content.length === howMany;
             } else {
-                return tree.content.length > 0;
+                return tree.$content.length > 0;
             }
         },
 
@@ -330,12 +330,12 @@ exports.create = function (tree) {
                 element : {
                     writable : false,
                     configurable : false,
-                    value : this.tree.content[position]
+                    value : this.tree.$content[position]
                 },
                 path : {
                     writable : false,
                     configurable : false,
-                    value : "tree.content[" + position + "]"
+                    value : "tree.$content[" + position + "]"
                 }
             });
         },

@@ -383,7 +383,7 @@ var CptWrapper = klass({
 /**
  * Create a Component wrapper and initialize it correctly according to the attributes passed as arguments
  * @param {Object} cptArgs the component arguments
- *      e.g. { nodeInstance:x, attributes:{att1:{}, att2:{}}, content:[] }
+ *      e.g. { nodeInstance:x, $attributes:{att1:{}, att2:{}}, $content:[] }
  */
 function createCptWrapper(Ctl, cptArgs) {
     var cw = new CptWrapper(Ctl), att, t, v; // will also create a new controller instance
@@ -391,18 +391,18 @@ function createCptWrapper(Ctl, cptArgs) {
         var cpt=cw.cpt, ni=cptArgs.nodeInstance;
         if (ni.isCptComponent || ni.isCptAttElement) {
             // set the nodeInstance reference on the component
-            var attributes=cptArgs.$attributes, content=cptArgs.content;
+            var $attributes=cptArgs.$attributes, $content=cptArgs.$content;
             cw.nodeInstance = ni;
             cw.cpt.nodeInstance = ni;
 
-            if (attributes) {
-                for (var k in attributes) {
+            if ($attributes) {
+                for (var k in $attributes) {
 
                     // set the template attribute value on the component instance
-                    if (attributes.hasOwnProperty(k)) {
+                    if ($attributes.hasOwnProperty(k)) {
                         att=cw.cpt.$attributes[k];
                         t=att.type;
-                        v=attributes[k];
+                        v=$attributes[k];
 
                         if (t && ATTRIBUTE_TYPES[t]) {
                             // in case of invalid type an error should already have been logged
@@ -414,12 +414,12 @@ function createCptWrapper(Ctl, cptArgs) {
                 }
             }
 
-            if (content) {
-                if (cpt.content) {
-                  log.error(ni+" Component controller cannot use 'content' for another property than child attribute elements");
+            if ($content) {
+                if (cpt.$content) {
+                  log.error(ni+" Component controller cannot use '$content' for another property than child attribute elements");
                 } else {
                   // create the content property on the component instance
-                  json.set(cpt,"content",content);
+                  json.set(cpt,"$content",$content);
                 }
             }
         }

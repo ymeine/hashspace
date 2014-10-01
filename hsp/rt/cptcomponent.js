@@ -66,7 +66,7 @@ exports.$CptComponent = {
     }
     var ctlProto=this.ctlConstuctor.prototype;
     this.ctlAttributes=ctlProto.$attributes;
-    this.ctlElements=ctlProto.elements;
+    this.ctlElements=ctlProto.$elements;
 
     // load template arguments
     this.loadCptAttElements();
@@ -75,7 +75,7 @@ exports.$CptComponent = {
     var cptArgs={
       nodeInstance:this,
       $attributes:{},
-      content:null
+      $content:null
     };
     var attributes=cptArgs.$attributes, att;
 
@@ -104,7 +104,7 @@ exports.$CptComponent = {
       }
     }
     if (this.childElements) {
-      cptArgs.content=this.getControllerContent();
+      cptArgs.$content=this.getControllerContent();
     }
     return cptArgs;
   },

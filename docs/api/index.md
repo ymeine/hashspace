@@ -246,7 +246,7 @@ The above means mainly two important things:
 * parameters of the template (equivalent of element attributes) are __passed by name__, not by position
 * it not only instantiates the template but also renders it automatically in a DOM element inserted exactly where the statement is used
 
-There is also an additional subtlety regarding the passing of the parameters. As said, they are passed by name, so if you use `<tplref arg1="..." />` for a template defined like this `<template(whatever, arg1)>`, `arg1` will be properly passed, wherever it is defined in the parameters list. However the actual subtlety resides in the __first__ parameter of the function: if it doesn't match any attribute name, it is not left `undefined` as one could think. Instead, it refers to an object built from the attribute/value pairs. In our little example, `whatever` would refer to an object like this: `{arg1: "..."}`. This is implicitely due to the internal way hashspace is managing components instantiation (components are discussed later in this documentation).
+There is also an additional subtlety regarding the passing of the parameters. As said, they are passed by name, so if you use `<tplref arg1="..." />` for a template defined like this `<template(whatever, arg1)>`, `arg1` will be properly passed, wherever it is defined in the parameters list. However the actual subtlety resides in the __first__ parameter of the function: if it doesn't match any attribute name, it is not left `undefined` as one could think. Instead, it refers to an object built from the attribute/value pairs. In our little example, `whatever` would refer to an object like this: `{arg1: "..."}`. This is implicitly due to the internal way hashspace is managing components instantiation (components are discussed later in this documentation).
 
 __Reference__:
 
@@ -254,7 +254,7 @@ Note also that the statement is not expecting a simple template name, it takes a
 
 __Using a template as a container__:
 
-Using a template as a container with child elements is only useful if you have to pass `template` attributes' values to the subtemplate. It is not oftenly used, and you might prefer implement here a [component](#interfaces) instead.
+Using a template as a container with child elements is only useful if you have to pass `template` attributes' values to the subtemplate. It is not often used, and you might prefer implement here a [component](#interfaces) instead.
 
 ---
 
@@ -625,7 +625,7 @@ $attributes: {
 Elements are here to address this lack. They are somehow smarter `template` attributes. With them, you have the ability to use them as collections (or iterative elements).
 
 ```json
-elements: {
+$elements: {
   option: { type: "template" }
 }
 ```
