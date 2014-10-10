@@ -442,7 +442,7 @@ exports.$CptComponent = {
               this.initChildComponents();
           }
           // Change content of the controller
-          json.set(this.controller,"content",this.getControllerContent());
+          json.set(this.controller,"$content",this.getControllerContent());
 
           this.edirty=false;
       }
